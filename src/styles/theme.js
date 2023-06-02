@@ -3,6 +3,7 @@ export default {
     HEADER_BG: "#001119",
     BODY_BG: "#000A0F",
     WHITE_TEXT: "#FFFAF1",
+    WHITE_TEXT_300: "#E1E1E6",
     GRAY_TEXT: "#4D585E",
     TOMATO_100: "#750310",
     CAKE_100: "#065E7C",

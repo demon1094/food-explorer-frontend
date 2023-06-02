@@ -35,6 +35,7 @@ export const Menu = styled.div`
     nav {
       display: none;
       position: fixed;
+      z-index: 999;
       width: 100%;
       height: 80vh;
       top: 11.5rem;
