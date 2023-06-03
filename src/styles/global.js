@@ -14,5 +14,10 @@ export default createGlobalStyle`
   body {
     height: 100vh;
     font-size: 1.6rem;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
   }
 `

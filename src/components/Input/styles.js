@@ -5,8 +5,8 @@ export const Container = styled.div`
   height: 5rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 2rem;
+  gap: .3rem;
+  padding: 1rem;
   font-weight: 500;
   border-radius: .5rem;
   background: ${ ({ theme }) => theme.COLORS.INPUT_BG };

@@ -3,19 +3,11 @@ import styled from "styled-components"
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  display: grid;
-  grid-template-rows: 11.5rem 1fr 8rem;
-  grid-template-areas: 
-  "header"
-  "main"
-  "footer";
-
-  > header {
-    grid-area: header;
-  }
+  display: flex;
+  flex-direction: column;
 
   > main {
-    grid-area: main;
+    height: 100%;
     padding: 6rem 3rem 0;
     font-family: 'Poppins', sans-serif;
     background: ${ ({ theme }) => theme.COLORS.BODY_BG };
@@ -33,7 +25,8 @@ export const Introduction = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 3rem;
+  padding-right: 2rem;
+  margin-bottom: 6rem;
   border-radius: .5rem;
   background: ${ ({ theme }) => theme.COLORS.GRADIENT_200 };
 
@@ -54,6 +47,45 @@ export const Introduction = styled.div`
     p {
       max-width: 20rem;
       font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 425px) {
+    justify-content: center;
+    padding-right: 0;
+
+    img {
+      display: none;
+    }
+  }
+`
+
+export const Dishes = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  
+  > .dish-category {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT_300 };
+    }
+
+    .dishes-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+        width: 0;
+      }
     }
   }
 `

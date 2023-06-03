@@ -1,8 +1,10 @@
-import { Container, Introduction } from "./styles"
+import { Container, Introduction, Dishes } from "./styles"
 
 import MarketingIMG from "../../assets/saboresinigualaveis.png"
+import SaladaIMG from "../../assets/saladaRavanello.png"
 
 import { Header } from "../../components/Header"
+import { Dish } from "../../components/Dish"
 
 export function Home() {
   return (
@@ -21,6 +23,20 @@ export function Home() {
             </p>
           </div>
         </Introduction>
+
+        <Dishes>
+          <div className="dish-category meals">
+            <h3>Refeições</h3>
+
+            <div className="dishes-wrapper">
+              <Dish
+                img={SaladaIMG}
+                name="Salada Ravanello"
+                price="49,90"
+              />
+            </div>
+          </div>
+        </Dishes>
       </main>
     </Container>
   )

@@ -1,12 +1,11 @@
 import styled from "styled-components"
 
 export const Container = styled.header`
-  width: 100%;
-  height: 100%;
+  height: 11.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3rem 2rem;
+  padding: 3rem;
   background: ${ ({ theme }) => theme.COLORS.HEADER_BG };
 `
 
@@ -17,7 +16,6 @@ export const Menu = styled.div`
       flex-direction: column;
       gap: .6rem;
       
-    
       &:hover {
         cursor: pointer;
         filter: brightness(0.6);
@@ -34,10 +32,10 @@ export const Menu = styled.div`
 
     nav {
       display: none;
-      position: fixed;
+      position: absolute;
       z-index: 999;
       width: 100%;
-      height: 80vh;
+      height: 100%;
       top: 11.5rem;
       left: 0rem;
       padding: 4rem 2.5rem 0;
