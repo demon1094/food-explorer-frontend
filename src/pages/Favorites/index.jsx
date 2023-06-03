@@ -13,7 +13,7 @@ export function Favorites() {
       <main>
         <h1>Meus favoritos</h1>
         
-        <div className="favorite-dishes-wrapper">
+        <section className="favorite-dishes-wrapper">
           <Dish>
             <img src={SaladaIMG} alt="Imagem do prato" />
             <div>
@@ -37,7 +37,7 @@ export function Favorites() {
               <button>Remover dos favoritos</button>
             </div>
           </Dish>
-        </div>
+        </section>
       </main>
 
       <Footer />

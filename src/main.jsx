@@ -5,13 +5,13 @@ import GlobalStyles from './styles/global'
 import { ThemeProvider } from 'styled-components'
 import theme from './styles/theme'
 
-import { Favorites } from './pages/Favorites'
+import { Cart } from './pages/Cart'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Favorites />
+      <Cart />
     </ThemeProvider>
   </React.StrictMode>
 )
