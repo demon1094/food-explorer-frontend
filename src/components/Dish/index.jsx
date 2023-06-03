@@ -17,6 +17,12 @@ export function Dish({ img, name, price }) {
     }
   }
 
+  const decreseAmount = () => {
+    if (amount > 1) {
+      setAmount(amount - 1)
+    }
+  }
+
   return (
     <Container favorited={favorited}>
       <button className="favorite-btn" onClick={handleFavorited}>
@@ -30,15 +36,8 @@ export function Dish({ img, name, price }) {
       <h6>R$ <span>{price}</span></h6>
 
       <div className="add-sub">
-        <button onClick={() => {
-          if (amount > 1) {
-            setAmount(amount - 1)
-          }
-        }}
-        >
-          -
-        </button>
-        <span>{amount}</span>
+        <button onClick={decreseAmount}>-</button>
+        <span>{String(amount).padStart(2, '0')}</span>
         <button onClick={() => setAmount(amount + 1)}>+</button>
       </div>
 

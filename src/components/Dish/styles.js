@@ -10,7 +10,7 @@ export const Container = styled.div`
   justify-content: center;
   gap: 1.2rem;
   padding: 2.4rem;
-  border-radius: .8rem;
+  border-radius: 1rem;
   outline: 2px solid ${ ({ theme }) => theme.COLORS.BLACK_300 };
   font-weight: 400;
   background: ${ ({ theme }) => theme.COLORS.BLACK_200 };
@@ -65,12 +65,17 @@ export const Container = styled.div`
       outline: none;
       background: none;
       font-size: 3rem;
+      padding: 0 .5rem;
       color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT_300 };
 
       &:hover {
         cursor: pointer;
         filter: brightness(1.6);
       }
+    }
+
+    span {
+      width: 1.2rem;
     }
   }
 

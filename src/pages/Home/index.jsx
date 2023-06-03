@@ -2,8 +2,11 @@ import { Container, Introduction, Dishes } from "./styles"
 
 import MarketingIMG from "../../assets/saboresinigualaveis.png"
 import SaladaIMG from "../../assets/saladaRavanello.png"
+import PrugnaPieIMG from "../../assets/prugnaPie.png"
+import SucoIMG from "../../assets/suco.png"
 
 import { Header } from "../../components/Header"
+import { Footer } from "../../components/Footer"
 import { Dish } from "../../components/Dish"
 
 export function Home() {
@@ -25,7 +28,7 @@ export function Home() {
         </Introduction>
 
         <Dishes>
-          <div className="dish-category meals">
+          <section className="dish-category meals">
             <h3>Refeições</h3>
 
             <div className="dishes-wrapper">
@@ -34,10 +37,66 @@ export function Home() {
                 name="Salada Ravanello"
                 price="49,90"
               />
+              <Dish
+                img={SaladaIMG}
+                name="Salada Ravanello"
+                price="49,90"
+              />
+              <Dish
+                img={SaladaIMG}
+                name="Salada Ravanello"
+                price="49,90"
+              />
             </div>
-          </div>
+          </section>
+
+          <section className="dish-category main-dishes">
+            <h3>Pratos principais</h3>
+
+            <div className="dishes-wrapper">
+              <Dish
+                img={PrugnaPieIMG}
+                name="Prugna Pie"
+                price="79,90"
+              />
+              <Dish
+                img={PrugnaPieIMG}
+                name="Prugna Pie"
+                price="79,90"
+              />
+              <Dish
+                img={PrugnaPieIMG}
+                name="Prugna Pie"
+                price="79,90"
+              />
+            </div>
+          </section>
+
+          <section className="dish-category main-dishes">
+            <h3>Bebidas</h3>
+
+            <div className="dishes-wrapper">
+              <Dish
+                img={SucoIMG}
+                name="Suco de Maracujá"
+                price="13,90"
+              />
+              <Dish
+                img={SucoIMG}
+                name="Suco de Maracujá"
+                price="13,90"
+              />
+              <Dish
+                img={SucoIMG}
+                name="Suco de Maracujá"
+                price="13,90"
+              />
+            </div>
+          </section>
         </Dishes>
       </main>
+      
+      <Footer />
     </Container>
   )
 }

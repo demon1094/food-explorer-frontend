@@ -7,8 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
 
   > main {
-    height: 100%;
-    padding: 6rem 3rem 0;
+    padding: 6rem 3rem;
     font-family: 'Poppins', sans-serif;
     background: ${ ({ theme }) => theme.COLORS.BODY_BG };
   }
@@ -33,10 +32,14 @@ export const Introduction = styled.div`
   > img {
     position: absolute;
     bottom: 0;
+    z-index: 1;
     left: -3rem;
   }
 
   > div {
+    position: relative;
+    z-index: 2;
+
     color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT_300 };
 
     h3 {
@@ -55,7 +58,11 @@ export const Introduction = styled.div`
     padding-right: 0;
 
     img {
-      display: none;
+      opacity: 0.35;
+    }
+
+    h3, p {
+      filter: drop-shadow(0 0 5px #000);
     }
   }
 `
