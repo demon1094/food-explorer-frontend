@@ -5,13 +5,13 @@ import GlobalStyles from './styles/global'
 import { ThemeProvider } from 'styled-components'
 import theme from './styles/theme'
 
-import { Cart } from './pages/Cart'
+import { Payment } from './pages/Payment'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Cart />
+      <Payment />
     </ThemeProvider>
   </React.StrictMode>
 )

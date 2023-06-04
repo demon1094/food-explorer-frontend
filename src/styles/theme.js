@@ -11,6 +11,7 @@ export default {
     TOMATO_400: "#AB4D55",
     CAKE_100: "#065E7C",
     CAKE_200: "#82F3FF",
+    CAKE_800: "#0D161B",
     INPUT_BG: "#0D1D25",
     BLACK_100: "#000405",
     BLACK_200: "#00070A",
