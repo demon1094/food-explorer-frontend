@@ -6,6 +6,7 @@ export default {
     WHITE_TEXT: "#FFFAF1",
     WHITE_TEXT_300: "#E1E1E6",
     GRAY_TEXT: "#4D585E",
+    GRAY_TEXT_100: "#C4C4CC",
     GRAY_200: "#192227",
     TOMATO_100: "#750310",
     TOMATO_400: "#AB4D55",

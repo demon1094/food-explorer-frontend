@@ -44,9 +44,9 @@ export const PaymentWrapper = styled.div`
     gap: .6rem;
     font-size: 1.6rem;
     border-radius: .8rem 0 0 0;
-    background: ${ ({ pixPayment, theme }) => pixPayment ? theme.COLORS.CAKE_800 : 'none' };
+    background: ${ ({ paymentMethod, theme }) => paymentMethod === 'pix' ? theme.COLORS.CAKE_800 : 'none' };
     border-bottom: 1px solid ${ ({ theme }) => theme.COLORS.GRAY_TEXT };
-    border-right: 2px solid ${ ({ theme }) => theme.COLORS.GRAY_TEXT };
+    border-right: 1px solid ${ ({ theme }) => theme.COLORS.GRAY_TEXT };
 
     &:hover {
       cursor: pointer;
@@ -61,7 +61,7 @@ export const PaymentWrapper = styled.div`
     gap: .6rem;
     font-size: 1.6rem;
     border-radius: 0 .8rem 0 0;
-    background: ${ ({ pixPayment, theme }) => !pixPayment ? theme.COLORS.CAKE_800 : 'none' };
+    background: ${ ({ paymentMethod, theme }) => paymentMethod === 'credit' ? theme.COLORS.CAKE_800 : 'none' };
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY_TEXT };
 
     &:hover {
@@ -133,6 +133,11 @@ export const PaymentWrapper = styled.div`
           outline: 1px solid ${({ theme }) => theme.COLORS.WHITE_TEXT_300 };
           color: ${({ theme }) => theme.COLORS.WHITE_TEXT_300 };
           background: none;
+
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+          }
         }
 
         .valid-cvc {
@@ -140,6 +145,31 @@ export const PaymentWrapper = styled.div`
           align-items: center;
           gap: 2rem;
           margin-bottom: 1rem;
+        }
+      }
+    }
+
+    .loading-payment {
+      width: 100%;
+      height: 100%;
+      padding: 0 2rem;
+      
+      div {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+        color: ${({ theme }) => theme.COLORS.GRAY_TEXT };
+  
+        > svg {
+          font-size: 8rem;
+        }
+  
+        > p {
+          text-align: center;
+          font-size: 2rem;
         }
       }
     }

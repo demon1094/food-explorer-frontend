@@ -1,15 +1,19 @@
+/* eslint-disable no-unused-vars */
 import { Container, PaymentWrapper } from "./styles"
 
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 
-import { MdPix } from "react-icons/md"
 import { BsFillCreditCardFill, BsQrCode } from "react-icons/bs"
+import { MdPix } from "react-icons/md"
+import { FaRegClock } from "react-icons/fa"
+import { FiCheckCircle } from "react-icons/fi"
 
 import { useState } from "react"
 
 export function Payment() {
-  const [ pixPayment, setPixPayment ] = useState(true)
+  const [ paymentMethod, setPaymentMethod ] = useState('pix')
+  const [ onPayment, setOnPayment] = useState(false)
 
   return (
     <Container>
@@ -18,10 +22,10 @@ export function Payment() {
       <main>
         <h1>Pagamento</h1>
       
-        <PaymentWrapper pixPayment={pixPayment}>
+        <PaymentWrapper paymentMethod={paymentMethod}>
           <div
             className="pix"
-            onClick={() => setPixPayment(true)}
+            onClick={() => setPaymentMethod('pix')}
           >
             <MdPix />
             PIX
@@ -29,21 +33,26 @@ export function Payment() {
 
           <div
             className="credit-card"
-            onClick={() => setPixPayment(false)}
+            onClick={() => setPaymentMethod('credit')}
           >
             <BsFillCreditCardFill />
             Crédito
           </div>
 
           <div className="content">
-            <div className={`pix-payment ${pixPayment ? '' : 'hide'}`}>
+            <div className={`pix-payment ${paymentMethod === 'pix' ? '' : 'hide'}`}>
               <BsQrCode />
-              <button>
+              <button
+                onClick={() => {
+                  setPaymentMethod('')
+                  setOnPayment(true)
+                }}
+              >
                 Copiar código
               </button>
             </div>
 
-            <div className={`credit-payment ${pixPayment ? 'hide': ''}`}>
+            <div className={`credit-payment ${paymentMethod === 'credit' ? '': 'hide'}`}>
               <form>
                 <label htmlFor="card-number">Número do Cartão</label>
                 <input
@@ -72,10 +81,27 @@ export function Payment() {
                   </div>
                 </div>
 
-                <button>
+                <button
+                  type="button"
+                  onClick={() => { 
+                    setPaymentMethod('')
+                    setOnPayment(true)
+                  }}
+                >
                   Finalizar pagamento
                 </button>
               </form>
+            </div>
+
+            <div className={`loading-payment ${onPayment ? '' : 'hide'}`}>
+              <div className="waiting">
+                <FaRegClock />
+                <p>Aguardando pagamento no caixa</p>
+              </div>
+              {/* <div className="aproved">
+                <FiCheckCircle />
+                <p>Pagamento aprovado</p>
+              </div> */}
             </div>
           </div>
         </PaymentWrapper>
