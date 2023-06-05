@@ -153,25 +153,29 @@ export const PaymentWrapper = styled.div`
       width: 100%;
       height: 100%;
       padding: 0 2rem;
-      
-      div {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 3rem;
-        color: ${({ theme }) => theme.COLORS.GRAY_TEXT };
-  
-        > svg {
-          font-size: 8rem;
-        }
-  
-        > p {
-          text-align: center;
-          font-size: 2rem;
-        }
-      }
+    }
+  }
+`
+
+export const LoadingPayment = styled.div`
+  height: 100%;
+
+  > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    color: ${({ theme }) => theme.COLORS.GRAY_TEXT };
+
+    > svg {
+      font-size: 8rem;
+    }
+
+    > p {
+      text-align: center;
+      font-size: 2rem;
     }
   }
 `

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Container, PaymentWrapper } from "./styles"
+import { Container, PaymentWrapper, LoadingPayment } from "./styles"
 
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
@@ -9,11 +9,22 @@ import { MdPix } from "react-icons/md"
 import { FaRegClock } from "react-icons/fa"
 import { FiCheckCircle } from "react-icons/fi"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export function Payment() {
   const [ paymentMethod, setPaymentMethod ] = useState('pix')
   const [ onPayment, setOnPayment] = useState(false)
+  const [ waitingPayment, setWaitingPayment ] = useState(false) 
+  const [ paymentAproved, setPaymentAproved ] = useState(false)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setWaitingPayment(false)
+      setPaymentAproved(true)
+    }, 5000)
+
+    return () => clearInterval(timer)
+  }, [waitingPayment])
 
   return (
     <Container>
@@ -46,6 +57,7 @@ export function Payment() {
                 onClick={() => {
                   setPaymentMethod('')
                   setOnPayment(true)
+                  setWaitingPayment(true)
                 }}
               >
                 Copiar código
@@ -86,6 +98,7 @@ export function Payment() {
                   onClick={() => { 
                     setPaymentMethod('')
                     setOnPayment(true)
+                    setWaitingPayment(true)
                   }}
                 >
                   Finalizar pagamento
@@ -94,14 +107,17 @@ export function Payment() {
             </div>
 
             <div className={`loading-payment ${onPayment ? '' : 'hide'}`}>
-              <div className="waiting">
-                <FaRegClock />
-                <p>Aguardando pagamento no caixa</p>
-              </div>
-              {/* <div className="aproved">
-                <FiCheckCircle />
-                <p>Pagamento aprovado</p>
-              </div> */}
+              <LoadingPayment>
+                <div className={`waiting ${waitingPayment ? '' : 'hide'}`}>
+                  <FaRegClock />
+                  <p>Aguardando pagamento no caixa</p>
+                </div>
+
+                <div className={`aproved ${paymentAproved ? '' : 'hide'}`}>
+                  <FiCheckCircle />
+                  <p>Pagamento aprovado!</p>
+                </div>
+              </LoadingPayment>
             </div>
           </div>
         </PaymentWrapper>
