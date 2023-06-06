@@ -35,7 +35,7 @@ export const Container = styled.div`
   }
 
 
-  > img {
+  > .dish-img {
     width: 8.8rem;
     height: 8.8rem;
   }

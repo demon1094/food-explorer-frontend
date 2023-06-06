@@ -7,8 +7,12 @@ import { Input } from "../Input"
 
 import { useState } from "react"
 
+import { useCart } from "../../hooks/Cart"
+
 export function Header() {
   const [ open, setOpen ] = useState(false)
+
+  const { dishesOnCartCounter } = useCart()
 
   function openMobileMenu() {
     if (!open) {
@@ -39,22 +43,22 @@ export function Header() {
             />
 
             <ul>
-              <li><a href="#">Meus favoritos</a></li>
-              <li><a href="#">Meus pedidos</a></li>
-              <li><a href="#">Sair</a></li>
+              <li><a href="/favorites">Meus favoritos</a></li>
+              <li><a href="/orders">Meus pedidos</a></li>
+              <li><a href="/">Sair</a></li>
             </ul>
           </nav>
         </div>
       </Menu>
 
-      <Logo>
+      <Logo href="/">
         <img src={Polygon} />
         <span>food explorer</span>
       </Logo>
 
-      <Cart>
+      <Cart href="/cart">
         <TfiReceipt />
-        <span>0</span>
+        <span>{dishesOnCartCounter}</span>
       </Cart>
     </Container>
   )

@@ -84,18 +84,20 @@ export const Menu = styled.div`
   }
 `
 
-export const Logo = styled.div`
+export const Logo = styled.a`
   display: flex;
   align-items: center;
   gap: .8rem;
   font-family: 'Roboto', sans-serif;
   font-size: 2.1rem;
   font-weight: 600;
+  text-decoration: none;
   color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
 `
 
-export const Cart = styled.div`
+export const Cart = styled.a`
   position: relative;
+  text-decoration: none;
 
   &:hover {
     cursor: pointer;
@@ -107,6 +109,7 @@ export const Cart = styled.div`
   }
 
   > span {
+    font-family: 'Poppins', sans-serif;
     position: absolute;
     left: 1.2rem;
     bottom: 1.8rem;

@@ -5,9 +5,13 @@ import { FiHeart } from "react-icons/fi"
 
 import { useState } from "react"
 
+import { useCart } from "../../hooks/Cart"
+
 export function Dish({ img, name, price }) {
   const [ favorited, setFavorited ] = useState(false)
   const [ amount, setAmount ] = useState(1)
+
+  const { addDishToCart } = useCart()
 
   function handleFavorited() {
     if (!favorited) {
@@ -23,13 +27,19 @@ export function Dish({ img, name, price }) {
     }
   }
 
+  async function handleAddDish() {
+    await addDishToCart({ img, name, price, amount })
+  }
+
   return (
     <Container favorited={favorited}>
       <button className="favorite-btn" onClick={handleFavorited}>
         <FiHeart />
       </button>
 
-      <img src={img} alt="Imagem do prato" />
+      <a className="dish-img" href="/details/1">
+        <img src={img} alt="Imagem do prato" />
+      </a>
 
       <h4>{name}</h4>
 
@@ -41,7 +51,7 @@ export function Dish({ img, name, price }) {
         <button onClick={() => setAmount(amount + 1)}>+</button>
       </div>
 
-      <button className="add-btn">Incluir</button>
+      <button onClick={handleAddDish} className="add-btn">Incluir</button>
     </Container>
   )
 }
