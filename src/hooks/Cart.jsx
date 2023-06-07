@@ -18,9 +18,9 @@ export function CartProvider({ children }) {
       const dishAlreadyOnCart = dishes.find(dish => dish.name === newDish.name)
       
       if (dishAlreadyOnCart) {
-        const newArrayOfDishes = dishes.filter(item => item !== dishAlreadyOnCart)
-        
         newDish.amount = newDish.amount + dishAlreadyOnCart.amount
+        newDish.totalPrice = newDish.totalPrice + dishAlreadyOnCart.totalPrice
+        const newArrayOfDishes = dishes.filter(item => item !== dishAlreadyOnCart)
         
         setCart([...newArrayOfDishes, newDish])
         return localStorage.setItem('@foodexplorer:cart', JSON.stringify([...newArrayOfDishes, newDish]))
@@ -49,9 +49,8 @@ export function CartProvider({ children }) {
 
     if (dishesOnCart) {
       setCart(JSON.parse(dishesOnCart))
+      setDishesOnCartCounter(JSON.parse(dishesOnCart).length)
     }
-
-    setDishesOnCartCounter(JSON.parse(dishesOnCart).length)
   }, [])
 
   return (

@@ -43,7 +43,7 @@ export function Dish({ img, name, price }) {
 
       <h4>{name}</h4>
 
-      <h6>{ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(price * amount) }</h6>
+      <h6>{ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(price) }</h6>
 
       <div className="add-sub">
         <button onClick={decreseAmount}>-</button>
