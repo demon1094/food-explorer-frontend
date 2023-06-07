@@ -10,10 +10,10 @@ export function CartProvider({ children }) {
   const [ dishesOnCartCounter, setDishesOnCartCounter ] = useState(0)
 
   async function addDishToCart(newDish) {
-    const dishesOnCard = localStorage.getItem('@foodexplorer:cart')
-     
-    if (dishesOnCard) {
-      const dishes = JSON.parse(dishesOnCard)
+    const dishesOnCart = localStorage.getItem('@foodexplorer:cart')
+    
+    if (dishesOnCart) {
+      const dishes = JSON.parse(dishesOnCart)
       
       const dishAlreadyOnCart = dishes.find(dish => dish.name === newDish.name)
       
@@ -25,12 +25,14 @@ export function CartProvider({ children }) {
         setCart([...newArrayOfDishes, newDish])
         return localStorage.setItem('@foodexplorer:cart', JSON.stringify([...newArrayOfDishes, newDish]))
       }
-
+      
       setCart([...dishes, newDish])
+      setDishesOnCartCounter(prevState => prevState + 1)
       return localStorage.setItem('@foodexplorer:cart', JSON.stringify([...dishes, newDish]))
     }
 
     setCart([newDish])
+    setDishesOnCartCounter(prevState => prevState + 1)
     localStorage.setItem('@foodexplorer:cart', JSON.stringify([newDish]))
   }
 
@@ -38,6 +40,7 @@ export function CartProvider({ children }) {
     const cartWithRemovedDish = cart.filter(dish => dish !== removedDish)
 
     setCart(cartWithRemovedDish)
+    setDishesOnCartCounter(prevState => prevState - 1)
     return localStorage.setItem('@foodexplorer:cart', JSON.stringify(cartWithRemovedDish))
   }
 
@@ -47,6 +50,8 @@ export function CartProvider({ children }) {
     if (dishesOnCart) {
       setCart(JSON.parse(dishesOnCart))
     }
+
+    setDishesOnCartCounter(JSON.parse(dishesOnCart).length)
   }, [])
 
   return (
