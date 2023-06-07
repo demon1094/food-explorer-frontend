@@ -5,6 +5,9 @@ import { Footer } from "../../components/Footer"
 
 import { useCart } from "../../hooks/Cart"
 
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 export function Cart() {
   const { cart, removeDishFromCart } = useCart()
 
@@ -12,11 +15,30 @@ export function Cart() {
  
   async function handleRemoveDish(dish) {
     removeDishFromCart(dish)
+
+    toast.info('Prato removido do carrinho.', {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      draggablePercent: 60,
+      progress: undefined,
+      theme: "dark",
+      pauseOnFocusLoss: false
+    })
   }
 
   return (
     <Container>
       <Header />
+
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        limit={5}
+        closeButton={false}
+      />
 
       <main>
         <h1>Carrinho de compras</h1>

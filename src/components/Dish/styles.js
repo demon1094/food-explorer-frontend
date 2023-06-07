@@ -81,7 +81,7 @@ export const Container = styled.div`
 
   .add-btn {
     width: 100%;
-    height: 3.2rem;
+    min-height: 3.2rem;
     display: flex;
     align-items: center;
     justify-content: center;

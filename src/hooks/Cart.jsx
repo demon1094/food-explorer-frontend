@@ -20,6 +20,7 @@ export function CartProvider({ children }) {
       if (dishAlreadyOnCart) {
         newDish.amount = newDish.amount + dishAlreadyOnCart.amount
         newDish.totalPrice = newDish.totalPrice + dishAlreadyOnCart.totalPrice
+        
         const newArrayOfDishes = dishes.filter(item => item !== dishAlreadyOnCart)
         
         setCart([...newArrayOfDishes, newDish])

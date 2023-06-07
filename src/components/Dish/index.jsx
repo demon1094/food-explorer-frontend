@@ -7,18 +7,36 @@ import { useState } from "react"
 
 import { useCart } from "../../hooks/Cart"
 
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 export function Dish({ img, name, price }) {
   const [ favorited, setFavorited ] = useState(false)
   const [ amount, setAmount ] = useState(1)
 
   const { addDishToCart } = useCart()
 
-  function handleFavorited() {
+  const toastConfig = {
+    position: "top-right",
+    autoClose: 1000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: false,
+    draggable: true,
+    draggablePercent: 60,
+    progress: undefined,
+    theme: "dark",
+    pauseOnFocusLoss: false
+  }
+
+  async function handleFavorited() {
     if (!favorited) {
       setFavorited(true)
     } else {
       setFavorited(false)
     }
+
+    toast.success('Prato adicionado aos favoritos.', toastConfig)
   }
 
   const decreseAmount = () => {
@@ -29,10 +47,21 @@ export function Dish({ img, name, price }) {
 
   async function handleAddDish() {
     await addDishToCart({ img, name, totalPrice: price * amount, amount })
+
+    setAmount(1)
+
+    toast.success('Prato adicionado ao carrinho.', toastConfig)
   }
 
   return (
     <Container favorited={favorited}>
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        autoClose={1000}
+        limit={5}
+        closeButton={false}
+      />
+
       <button className="favorite-btn" onClick={handleFavorited}>
         <FiHeart />
       </button>
