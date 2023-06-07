@@ -28,7 +28,7 @@ export function Dish({ img, name, price }) {
   }
 
   async function handleAddDish() {
-    await addDishToCart({ img, name, price, amount })
+    await addDishToCart({ img, name, totalPrice: price * amount, amount })
   }
 
   return (

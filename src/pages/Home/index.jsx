@@ -36,42 +36,42 @@ export function Home() {
           id: 1,
           img: SaladaIMG,
           name: 'Salada Ravanello',
-          price: '49,90',
+          price: 49.90,
           category: 'meal'
         },
         {
           id: 2,
           img: SaladaIMG,
           name: 'Arroz com Fritas',
-          price: '29,90',
+          price: 29.90,
           category: 'meal'
         },
         {
           id: 3,
           img: PrugnaPieIMG,
           name: 'Prugna Pie',
-          price: '79,90',
+          price: 79.90,
           category: 'main'
         },
         {
           id: 4,
           img: PrugnaPieIMG,
           name: 'Filé Osvaldo Aranha',
-          price: '99,90',
+          price: 99.90,
           category: 'main'
         },
         {
           id: 5,
           img: SucoIMG,
           name: 'Suco de Maracujá',
-          price: '13,90',
+          price: 13.90,
           category: 'drink'
         },
         {
           id: 6,
           img: SucoIMG,
           name: 'Café Expresso',
-          price: '15,90',
+          price: 15.90,
           category: 'drink'
         },
       ])
