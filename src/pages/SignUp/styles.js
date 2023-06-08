@@ -7,7 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 5rem;
-  padding: 0 4rem;
+  padding: 0 4rem 4rem;
   background: ${ ({ theme }) => theme.COLORS.BODY_BG };
 
   > form {
@@ -25,6 +25,12 @@ export const Container = styled.div`
         font-family: 'Roboto', sans-serif;
         font-size: 1.6rem;
         color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT_300 };
+      }
+
+      .valid-password {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.3rem;
+        color: ${ ({ theme }) => theme.COLORS.TOMATO_400 };
       }
     }
 

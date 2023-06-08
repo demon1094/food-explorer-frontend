@@ -15,14 +15,14 @@ export function SignIn() {
           <label htmlFor="name">Email</label>
           <Input
             type="text"
-            placeholder="Exemplo: exemplo@exemplo.com"
+            placeholder="Digite seu email"
           />
         </div>
         <div className="input-wrapper">
           <label htmlFor="name">Senha</label>
           <Input
             type="password"
-            placeholder="No mínimo 6 caracteres"
+            placeholder="Digite sua senha"
           />
         </div>
 
