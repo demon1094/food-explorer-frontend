@@ -11,6 +11,7 @@ export const Container = styled.a`
   color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT_300 };
 
   &:hover {
+    cursor: pointer;
     filter: brightness(1.6);
   }
 `

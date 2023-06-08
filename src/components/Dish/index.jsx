@@ -32,11 +32,10 @@ export function Dish({ img, name, price }) {
   async function handleFavorited() {
     if (!favorited) {
       setFavorited(true)
+      toast.success('Prato adicionado aos favoritos.', toastConfig)
     } else {
       setFavorited(false)
     }
-
-    toast.success('Prato adicionado aos favoritos.', toastConfig)
   }
 
   const decreseAmount = () => {
