@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css"
 
 import { api } from "../../services/api"
 
-export function Dish({ img, name, price }) {
+export function Dish({ id, img, name, price }) {
   const [ favorited, setFavorited ] = useState(false)
   const [ amount, setAmount ] = useState(1)
 
@@ -49,7 +49,7 @@ export function Dish({ img, name, price }) {
   }
 
   async function handleAddDish() {
-    await addDishToCart({ img, name, totalPrice: price * amount, amount })
+    await addDishToCart({ id, img, name, totalPrice: price * amount, amount })
 
     setAmount(1)
 

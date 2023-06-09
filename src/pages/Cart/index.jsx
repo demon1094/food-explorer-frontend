@@ -3,10 +3,11 @@ import { Container, Dish } from "./styles"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 
-import { useCart } from "../../hooks/Cart"
-
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+
+import { useCart } from "../../hooks/Cart"
+import { api } from "../../services/api"
 
 export function Cart() {
   const { cart, removeDishFromCart } = useCart()
@@ -47,7 +48,7 @@ export function Cart() {
           {
             cart.map((dish, index) => (
               <Dish key={index}>
-                <img src={dish.img} alt="Imagem do prato" />
+                <img src={`${api.defaults.baseURL}/files/${dish.img}`} alt="Imagem do prato" />
   
                 <div className="dish-wrapper">
                   <div className="dish-info">

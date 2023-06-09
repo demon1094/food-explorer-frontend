@@ -49,6 +49,7 @@ export function Home() {
                 dishes.filter(dish => dish.category == 'meal').map((dish, index) => (
                   <Dish
                     key={index}
+                    id={dish.id}
                     img={dish.image}
                     name={dish.name}
                     price={dish.price}
@@ -66,6 +67,7 @@ export function Home() {
                 dishes.filter(dish => dish.category == 'dessert').map((dish, index) => (
                   <Dish
                     key={index}
+                    id={dish.id}
                     img={dish.image}
                     name={dish.name}
                     price={dish.price}
@@ -83,6 +85,7 @@ export function Home() {
                 dishes.filter(dish => dish.category == 'drink').map((dish, index) => (
                   <Dish
                     key={index}
+                    id={dish.id}
                     img={dish.image}
                     name={dish.name}
                     price={dish.price}
