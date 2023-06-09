@@ -10,6 +10,8 @@ import { useCart } from "../../hooks/Cart"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
+import { api } from "../../services/api"
+
 export function Dish({ img, name, price }) {
   const [ favorited, setFavorited ] = useState(false)
   const [ amount, setAmount ] = useState(1)
@@ -28,7 +30,9 @@ export function Dish({ img, name, price }) {
     theme: "dark",
     pauseOnFocusLoss: false
   }
-
+  
+  const image = `${api.defaults.baseURL}/files/${img}`
+  
   async function handleFavorited() {
     if (!favorited) {
       setFavorited(true)
@@ -66,7 +70,7 @@ export function Dish({ img, name, price }) {
       </button>
 
       <a className="dish-img" href="/details/1">
-        <img src={img} alt="Imagem do prato" />
+        <img src={image} alt="Imagem do prato" />
       </a>
 
       <h4>{name}</h4>
