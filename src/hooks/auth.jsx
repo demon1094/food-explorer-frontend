@@ -17,11 +17,11 @@ export function AuthProvider({ children }) {
       const response = await api.post('/sessions', { email, password })
       const { user, token } = response.data
 
-      localStorage.setItem('@foodexplorer:user', JSON.stringify(user))
+      localStorage.setItem('@foodexplorer:user', JSON.stringify(user.id))
       localStorage.setItem('@foodexplorer:token', token)
 
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-      setData({ user, token })
+      setData({ user: user.id, token })
 
     } catch(error) {
       if (error.response) {
@@ -48,7 +48,7 @@ export function AuthProvider({ children }) {
 
       setData({
         token,
-        user: JSON.parse(user)
+        user: JSON.parse(user.id)
       })
     }
   }, [])
