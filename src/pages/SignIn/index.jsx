@@ -5,9 +5,51 @@ import { Button } from "../../components/Button"
 import { Input } from "../../components/Input"
 import { Logo } from "../../components/Logo"
 
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
+import { useAuth } from "../../hooks/auth"
+import { useState } from "react"
+
 export function SignIn() {
+  const toastConfig = {
+    position: "top-right",
+    autoClose: 1500,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: false,
+    draggable: true,
+    draggablePercent: 60,
+    progress: undefined,
+    theme: "dark",
+    pauseOnFocusLoss: false
+  }
+
+  const [ email, setEmail ] = useState('')
+  const [ password, setPassword ] = useState('')
+
+  const { signIn } = useAuth()
+
+  async function handleSignIn() {
+    if (!email || !password ) {
+      return toast.error('Preencha todos os campos.', toastConfig)
+    }
+
+    signIn({ email, password })
+  }
+
   return (
     <Container>
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        pauseOnHover={false}
+        autoClose={1500}
+        limit={5}
+        closeButton={false}
+        theme="dark"
+        position="top-right"
+      />
+
       <Logo />
 
       <form>
@@ -16,6 +58,7 @@ export function SignIn() {
           <Input
             type="text"
             placeholder="Digite seu email"
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="input-wrapper">
@@ -23,10 +66,15 @@ export function SignIn() {
           <Input
             type="password"
             placeholder="Digite sua senha"
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
-        <Button title="Entrar" />
+        <Button
+          type="button"
+          title="Entrar"
+          onClick={handleSignIn}
+        />
       </form>
 
       <ButtonText href="/signup" title="Criar uma conta" />

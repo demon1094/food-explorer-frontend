@@ -6,13 +6,15 @@ import { FiSearch } from "react-icons/fi"
 import { Input } from "../Input"
 
 import { useState } from "react"
-
 import { useCart } from "../../hooks/Cart"
+import { useAuth } from "../../hooks/auth"
+
 
 export function Header() {
   const [ open, setOpen ] = useState(false)
 
   const { dishesOnCartCounter } = useCart()
+  const { signOut } = useAuth()
 
   function openMobileMenu() {
     if (!open) {
@@ -20,6 +22,10 @@ export function Header() {
     } else {
       setOpen(false)
     }
+  }
+
+  async function handleSignOut() {
+    signOut()
   }
 
   return (
@@ -45,7 +51,7 @@ export function Header() {
             <ul>
               <li><a href="/favorites">Meus favoritos</a></li>
               <li><a href="/orders">Meus pedidos</a></li>
-              <li><a href="/">Sair</a></li>
+              <li><a href="/" onClick={handleSignOut}>Sair</a></li>
             </ul>
           </nav>
         </div>
