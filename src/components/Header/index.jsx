@@ -12,7 +12,7 @@ import { useAuth } from "../../hooks/auth"
 export function Header() {
   const [ open, setOpen ] = useState(false)
 
-  const { dishesOnCartCounter } = useCart()
+  const { dishesOnCartCounter, clearCart } = useCart()
   const { signOut } = useAuth()
 
   function openMobileMenu() {
@@ -24,6 +24,7 @@ export function Header() {
   }
 
   async function handleSignOut() {
+    clearCart()
     signOut()
   }
 

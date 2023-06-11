@@ -4,7 +4,25 @@ import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { Order } from "../../components/Order"
 
+import { useState, useEffect } from "react"
+
+import { api } from "../../services/api"
+
 export function Orders() {
+  const [ orders, setOrders ] = useState([])
+
+  console.log(orders)
+
+  useEffect(() => {
+    async function fetchOrders() {
+      const response = await api.get('/orders')
+
+      setOrders(response.data)
+    }
+
+    fetchOrders()
+  }, [])
+
   return (
     <Container>
       <Header />
@@ -14,27 +32,17 @@ export function Orders() {
           <h1>Pedidos</h1>
 
           <div>
-            <Order
-              order_id={'0004'}
-              status='pending'
-              datetime="05/06 às 11h10"
-              description="1x Salada Ravanello, 1x Torradas de Parma, 
-              1x Chá de Canela, 1x Suco de Maracujá"
-            />
-            <Order
-              order_id={'0004'}
-              status='preparing'
-              datetime="05/06 às 11h10"
-              description="1x Salada Ravanello, 1x Torradas de Parma, 
-              1x Chá de Canela, 1x Suco de Maracujá"
-            />
-            <Order
-              order_id={'0004'}
-              status='delivered'
-              datetime="05/06 às 11h10"
-              description="1x Salada Ravanello, 1x Torradas de Parma, 
-              1x Chá de Canela, 1x Suco de Maracujá"
-            />
+            {
+              orders.map((order) => (
+                <Order
+                  key={order.id}
+                  order_id={order.id}
+                  status={order.status}
+                  description={order.description}
+                  datetime={order.created_at}
+                />
+              ))
+            }
           </div>
         </OrdersWrapper>
       </main>

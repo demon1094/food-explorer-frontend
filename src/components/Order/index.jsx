@@ -7,7 +7,7 @@ export function Order({ order_id, status, datetime, description }) {
   return (
     <Container>
       <div className="infos">
-        <span>{order_id}</span>
+        <span>{String(order_id).padStart(4, '0000')}</span>
         <Status status={status} />
         <span>{datetime}</span>
       </div>
