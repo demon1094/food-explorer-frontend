@@ -4,6 +4,8 @@ import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { Button } from "../../components/Button"
 
+import { BsCartX } from "react-icons/bs"
+
 import { toastConfig } from "../../services/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -37,34 +39,46 @@ export function Cart() {
       <main>
         <h1>Carrinho de compras</h1>
         
-        <section className="cart-dishes-wrapper">
-          {
-            cart.map((dish, index) => (
-              <Dish key={index}>
-                <img src={`${api.defaults.baseURL}/files/${dish.img}`} alt="Imagem do prato" />
-  
-                <div className="dish-wrapper">
-                  <div className="dish-info">
-                    <h3>{dish.amount}x {dish.name}</h3>
-                    <span>{ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(dish.totalPrice) }</span>
+        {
+          cart.length > 0 &&
+          <>
+            <section className="cart-dishes-wrapper">
+            {
+              cart.map((dish, index) => (
+                <Dish key={index}>
+                  <img src={`${api.defaults.baseURL}/files/${dish.img}`} alt="Imagem do prato" />
+    
+                  <div className="dish-wrapper">
+                    <div className="dish-info">
+                      <h3>{dish.amount}x {dish.name}</h3>
+                      <span>{ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(dish.totalPrice) }</span>
+                    </div>
+    
+                    <button onClick={() => handleRemoveDish(dish)}>Remover</button>
                   </div>
-  
-                  <button onClick={() => handleRemoveDish(dish)}>Remover</button>
-                </div>
-              </Dish>
-            ))
-          }
-        </section>
+                </Dish>
+              ))
+            }
+            </section>
 
-        <div className="value">
-          <h5>Total:</h5>
-          <span>{ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(totalValue) }</span>
-        </div>
+            <div className="value">
+              <h5>Total:</h5>
+              <span>{ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(totalValue) }</span>
+            </div>
 
-        <Button
-          title="Avançar"
-          to="/payment"
-        />
+            <Button
+              title="Avançar"
+              to="/payment"
+            />
+          </>
+        }
+        {
+          cart.length <= 0 &&
+          <div className="empty-cart">
+            <BsCartX />
+            <h2>Seu carrinho está vazio</h2>
+          </div>
+        }
       </main>
 
       <Footer />

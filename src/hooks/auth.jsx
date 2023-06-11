@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
       if (error.response) {
         toast.error(error.response.data.message, toastConfig)
       } else {
-        toast.error('Não foi possível efetual o login.', toastConfig)
+        toast.error('Não foi possível efetuar o login.', toastConfig)
       }
     }
   }
