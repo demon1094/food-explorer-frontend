@@ -30,4 +30,25 @@ export const OrdersWrapper = styled.section`
     align-items: center;
     gap: 3rem;
   }
+
+  > .empty-orders {
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+
+    svg {
+      font-size: 15rem;
+      color: ${ ({ theme }) => theme.COLORS.GRAY_TEXT };
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      color: ${ ({ theme }) => theme.COLORS.GRAY_TEXT };
+    }
+  }
 `
