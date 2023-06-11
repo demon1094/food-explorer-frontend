@@ -45,6 +45,12 @@ export function CartProvider({ children }) {
     return localStorage.setItem('@foodexplorer:cart', JSON.stringify(cartWithRemovedDish))
   }
 
+  async function clearCart() {
+    setCart([])
+    setDishesOnCartCounter(0)
+    localStorage.removeItem('@foodexplorer:cart')
+  }
+
   useEffect(() => {
     const dishesOnCart = localStorage.getItem('@foodexplorer:cart')
 
@@ -57,6 +63,7 @@ export function CartProvider({ children }) {
   return (
     <CartContext.Provider value={{
       cart,
+      clearCart,
       addDishToCart,
       removeDishFromCart,
       dishesOnCartCounter,

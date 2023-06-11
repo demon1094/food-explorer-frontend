@@ -1,11 +1,13 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
-export const Container = styled.button`
+export const Container = styled(Link)`
   width: 100%;
   height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
   gap: 1rem;
   font-family: 'Poppins', sans-serif;
   font-size: 1.5rem;

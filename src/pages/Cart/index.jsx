@@ -2,6 +2,7 @@ import { Container, Dish } from "./styles"
 
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
+import { Button } from "../../components/Button"
 
 import { toastConfig } from "../../services/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
@@ -60,9 +61,10 @@ export function Cart() {
           <span>{ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(totalValue) }</span>
         </div>
 
-        <button className="pay-btn">
-          Avançar
-        </button>
+        <Button
+          title="Avançar"
+          to="/payment"
+        />
       </main>
 
       <Footer />
