@@ -39,28 +39,6 @@ export const Container = styled.div`
         font-weight: 400;
       }
     }
-
-    .empty-cart {
-      position: absolute;
-      right: 0;
-      left: 0;
-      bottom: 30%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6rem;
-
-      svg {
-        font-size: 15rem;
-        color: ${ ({ theme }) => theme.COLORS.GRAY_TEXT };
-      }
-
-      h2 {
-        font-size: 2.5rem;
-        font-weight: 500;
-        color: ${ ({ theme }) => theme.COLORS.GRAY_TEXT };
-      }
-    }
   }
 `
 

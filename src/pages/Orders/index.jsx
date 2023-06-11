@@ -1,5 +1,6 @@
 import { Container, OrdersWrapper } from "./styles"
 
+import { EmptyDisplay } from "../../components/EmptyDisplay"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { Order } from "../../components/Order"
@@ -51,10 +52,10 @@ export function Orders() {
           }
           {
             orders.length <= 0 &&
-            <div className="empty-orders">
-              <TfiFaceSad />
-              <h2>Você ainda não fez nenhum pedido</h2>
-            </div>
+            <EmptyDisplay
+              icon={TfiFaceSad}
+              message="Nenhum pedido encontrado"
+            />
           }
         </OrdersWrapper>
       </main>

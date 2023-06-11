@@ -1,5 +1,6 @@
 import { Container, Dish } from "./styles"
 
+import { EmptyDisplay } from "../../components/EmptyDisplay"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 
@@ -77,10 +78,10 @@ export function Favorites() {
         }
         {
           favoriteDishes.length <= 0 &&
-          <div className="empty-favorites">
-            <AiOutlineStar />
-            <h2>Você não possui pratos favoritos</h2>
-          </div>
+          <EmptyDisplay
+            icon={AiOutlineStar}
+            message="Nenhum prato favoritado"
+          />
         }
       </main>
 

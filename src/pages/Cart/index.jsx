@@ -1,5 +1,6 @@
 import { Container, Dish } from "./styles"
 
+import { EmptyDisplay } from "../../components/EmptyDisplay"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { Button } from "../../components/Button"
@@ -74,10 +75,10 @@ export function Cart() {
         }
         {
           cart.length <= 0 &&
-          <div className="empty-cart">
-            <BsCartX />
-            <h2>Seu carrinho está vazio</h2>
-          </div>
+          <EmptyDisplay
+            icon={BsCartX}
+            message="Seu carrinho está vazio"
+          />
         }
       </main>
 
