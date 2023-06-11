@@ -143,16 +143,10 @@ export function Payment() {
                   </div>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => { 
-                    setPaymentMethod('')
-                    setOnPayment(true)
-                    setWaitingPayment(true)
-                  }}
-                >
-                  Finalizar pagamento
-                </button>
+                <Button
+                  title="Finalizar pagamento"
+                  onClick={handlePayment}
+                />
               </form>
             </div>
 
@@ -163,7 +157,7 @@ export function Payment() {
                   <p>Aguardando pagamento no caixa</p>
                 </div>
 
-                <div className={`aproved ${paymentAproved ? '' : 'hide'}`}>
+                <div className={`aproved ${paymentAproved ? 'visible' : ''}`}>
                   <FiCheckCircle />
                   <p>Pagamento aprovado!</p>
                 </div>

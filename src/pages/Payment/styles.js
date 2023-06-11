@@ -178,4 +178,12 @@ export const LoadingPayment = styled.div`
       font-size: 2rem;
     }
   }
+
+  > .aproved {
+    display: none;
+  }
+
+  > .visible {
+    display: flex;
+  }
 `
