@@ -7,6 +7,7 @@ import { useState } from "react"
 
 import { useCart } from "../../hooks/Cart"
 
+import { toastConfig } from "../../services/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
@@ -18,19 +19,6 @@ export function Dish({ id, img, name, price }) {
 
   const { addDishToCart } = useCart()
 
-  const toastConfig = {
-    position: "top-right",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: false,
-    pauseOnHover: false,
-    draggable: true,
-    draggablePercent: 60,
-    progress: undefined,
-    theme: "dark",
-    pauseOnFocusLoss: false
-  }
-  
   const image = `${api.defaults.baseURL}/files/${img}`
   
   async function handleFavorited() {
@@ -53,6 +41,7 @@ export function Dish({ id, img, name, price }) {
 
     setAmount(1)
 
+    toastConfig.autoClose = 1000
     toast.success('Prato adicionado ao carrinho.', toastConfig)
   }
 

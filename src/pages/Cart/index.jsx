@@ -3,6 +3,7 @@ import { Container, Dish } from "./styles"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 
+import { toastConfig } from "../../services/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
@@ -17,18 +18,8 @@ export function Cart() {
   async function handleRemoveDish(dish) {
     removeDishFromCart(dish)
 
-    toast.info('Prato removido do carrinho.', {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
-      draggable: true,
-      draggablePercent: 60,
-      progress: undefined,
-      theme: "dark",
-      pauseOnFocusLoss: false
-    })
+    toastConfig.autoClose = 1000
+    toast.info('Prato removido do carrinho.', toastConfig)
   }
 
   return (
@@ -38,6 +29,7 @@ export function Cart() {
       <ToastContainer
         pauseOnFocusLoss={false}
         limit={5}
+        autoClose={1000}
         closeButton={false}
       />
 

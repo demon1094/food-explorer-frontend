@@ -9,7 +9,6 @@ import { useState } from "react"
 import { useCart } from "../../hooks/Cart"
 import { useAuth } from "../../hooks/auth"
 
-
 export function Header() {
   const [ open, setOpen ] = useState(false)
 
