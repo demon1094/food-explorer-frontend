@@ -24,6 +24,26 @@ export const Container = styled.div`
       align-items: flex-start;
       gap: 3rem;
     }
+
+    .empty-favorites {
+      position: relative;
+      top: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5rem;
+
+      svg {
+        font-size: 15rem;
+        color: ${ ({ theme }) => theme.COLORS.GRAY_TEXT };
+      }
+
+      h2 {
+        font-size: 2rem;
+        font-weight: 500;
+        color: ${ ({ theme }) => theme.COLORS.GRAY_TEXT };
+      }
+    }
   }
 `
 
@@ -33,7 +53,7 @@ export const Dish = styled.div`
   gap: 1.5rem;
 
   > img {
-    width: 8rem;
+    width: 7rem;
   }
 
   > div {

@@ -40,7 +40,7 @@ export function Dish({ id, img, name, price }) {
     } else {
       setFavorited(false)
       
-      await api.delete(`/favorites?dish_id=${id}`)
+      await api.delete(`/favorites/${id}`)
     }
   }
 
