@@ -5,14 +5,30 @@ import { Footer } from "../../components/Footer"
 
 import { AiOutlineStar } from "react-icons/ai"
 
+import { toastConfig } from "../../services/toastConfig"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 import { useState, useEffect } from "react"
 import { api } from "../../services/api"
 
 export function Favorites() {
   const [ favoriteDishes, setFavoriteDishes ] = useState([])
 
+  toastConfig.autoClose = 700
+
   async function handleRemoveFavoriteDish(id) {
     await api.delete(`/favorites/${id}`)
+    .then(() => {
+      toast.info('Prato removido dos favoritos', toastConfig)
+    })
+    .catch((error) => {
+      if (error.response) {
+        toast.error(error.response.data.message, toastConfig)
+      } else {
+        toast.error('Erro ao remover prato dos favoritos', toastConfig)
+      }
+    })
   }
 
   useEffect(() => {
@@ -27,6 +43,13 @@ export function Favorites() {
 
   return (
     <Container>
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        limit={5}
+        autoClose={700}
+        closeButton={false}
+      />
+
       <Header />
 
       <main>
