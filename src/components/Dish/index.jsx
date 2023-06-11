@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import { Container } from "./styles"
 
+import { Button } from "../Button"
+
 import { FiHeart } from "react-icons/fi"
 
-import { useState } from "react"
-
+import { useState, useEffect } from "react"
 import { useCart } from "../../hooks/Cart"
 
 import { toastConfig } from "../../services/toastConfig"
@@ -16,17 +17,30 @@ import { api } from "../../services/api"
 export function Dish({ id, img, name, price }) {
   const [ favorited, setFavorited ] = useState(false)
   const [ amount, setAmount ] = useState(1)
+  
+  const image = `${api.defaults.baseURL}/files/${img}`
 
   const { addDishToCart } = useCart()
 
-  const image = `${api.defaults.baseURL}/files/${img}`
-  
   async function handleFavorited() {
     if (!favorited) {
       setFavorited(true)
-      toast.success('Prato adicionado aos favoritos.', toastConfig)
+
+      await api.post(`/favorites?dish_id=${id}`)
+      .then(() => {
+        toast.success('Prato adicionado aos favoritos.', toastConfig)
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message, toastConfig)
+        } else {
+          toast.error('Não foi possível favoritar esse prato.', toastConfig)
+        }
+      })
     } else {
       setFavorited(false)
+      
+      await api.delete(`/favorites?dish_id=${id}`)
     }
   }
 
@@ -44,6 +58,20 @@ export function Dish({ id, img, name, price }) {
     toastConfig.autoClose = 1000
     toast.success('Prato adicionado ao carrinho.', toastConfig)
   }
+
+  useEffect(() => {
+    async function fetchFavorite() {
+      const response = await api.get(`/favorites/${id}`)
+
+      const dishFavorited = response.data.find(item => item.dish_id === id)
+
+      if (dishFavorited) {
+        setFavorited(true)
+      }
+    }
+
+    fetchFavorite()
+  }, [id])
 
   return (
     <Container favorited={favorited}>
@@ -72,7 +100,11 @@ export function Dish({ id, img, name, price }) {
         <button onClick={() => setAmount(amount + 1)}>+</button>
       </div>
 
-      <button onClick={handleAddDish} className="add-btn">Incluir</button>
+      <Button
+        title="incluir"
+        className="add-btn"
+        onClick={handleAddDish}
+      />
     </Container>
   )
 }

@@ -80,24 +80,6 @@ export const Container = styled.div`
   }
 
   .add-btn {
-    width: 100%;
     min-height: 3.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1.2rem;
-    border: none;
-    outline: none;
-    border-radius: .5rem;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.4rem;
-    transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT_300 };
-    background: ${ ({ theme }) => theme.COLORS.TOMATO_100 };
-
-    &:hover {
-      cursor: pointer;
-      filter: brightness(1.6);
-    }
   }
 `
