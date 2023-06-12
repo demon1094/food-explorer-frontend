@@ -7,6 +7,8 @@ import { Order } from "../../components/Order"
 
 import { TfiFaceSad } from "react-icons/tfi"
 
+import { ToastContainer } from "react-toastify"
+
 import { useState, useEffect } from "react"
 
 import { api } from "../../services/api"
@@ -28,6 +30,13 @@ export function Orders() {
 
   return (
     <Container>
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        limit={5}
+        autoClose={700}
+        closeButton={false}
+      />
+
       <Header />
 
       <main>
