@@ -89,12 +89,11 @@ export const Container = styled.div`
 
         .ingredients {
           width: 100%;
-          height: 5.5rem;
-          display: flex;
-          align-items: center;
-          padding: .8rem;
-          overflow-x: auto;
+          min-height: 5.5rem;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
           gap: 1rem;
+          padding: .8rem;
           border-radius: .8rem;
           background: ${ ({ theme }) => theme.COLORS.INPUT_BG };
         }

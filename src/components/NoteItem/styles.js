@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  min-width: 15rem;
-  height: 100%;
+  width: 100%;
+  max-height: 4rem;
   display: flex;
   align-items: center;
-  padding-right: 1.6rem;
+  padding-right: 1.2rem;
   border-radius: 1rem;
   border: ${({ theme, isNew }) => isNew ? `1px dashed ${ theme.COLORS.GRAY_TEXT }` : "none" };
   background-color: ${({ theme, isNew }) => isNew ? "transparent" : theme.COLORS.GRAY_BG };
@@ -14,7 +14,7 @@ export const Container = styled.div`
   > button {
     border: none;
     background: none;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .button-delete {
@@ -28,7 +28,7 @@ export const Container = styled.div`
   > input {
     width: 100%;
     height: 5.6rem;
-    padding: 1.2rem;
+    padding-left: 1.2rem;
     border: none;
     outline: none;
     color: ${({ theme }) => theme.COLORS.WHITE_TEXT };

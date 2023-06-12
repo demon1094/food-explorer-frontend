@@ -35,8 +35,9 @@ export const Container = styled.div`
   }
 
   > .dish-img img {
-    max-width: 8.8rem;
-    max-height: 8.8rem;
+    width: 8.8rem;
+    height: 8.8rem;
+    border-radius: 50%;
   }
 
   > h4 {

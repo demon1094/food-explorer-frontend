@@ -19,6 +19,8 @@ export const Container = styled.div`
 
     > img {
       width: 26rem;
+      height: 26rem;
+      border-radius: 50%;
     }
 
     > h2 {

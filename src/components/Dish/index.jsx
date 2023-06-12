@@ -22,9 +22,11 @@ export function Dish({ id, img, name, price }) {
   const image = `${api.defaults.baseURL}/files/${img}`
 
   const { user } = useAuth()
-
+  
   const { addDishToCart } = useCart()
-
+  
+  toastConfig.autoClose = 700
+  
   async function handleFavorited() {
     if (!favorited) {
       setFavorited(true)
@@ -58,7 +60,6 @@ export function Dish({ id, img, name, price }) {
 
     setAmount(1)
 
-    toastConfig.autoClose = 1000
     toast.success('Prato adicionado ao carrinho.', toastConfig)
   }
 
@@ -80,11 +81,10 @@ export function Dish({ id, img, name, price }) {
     <Container favorited={favorited}>
       <ToastContainer
         pauseOnFocusLoss={false}
-        autoClose={1000}
+        autoClose={700}
         limit={5}
         closeButton={false}
       />
-
 
       <button className="favorite-btn" onClick={handleFavorited}>
         <FiHeart />
