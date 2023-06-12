@@ -5,6 +5,7 @@ export default {
     BODY_BG: "#000A0F",
     WHITE_TEXT: "#FFFAF1",
     WHITE_TEXT_300: "#E1E1E6",
+    GRAY_BG: "#76797B",
     GRAY_TEXT: "#4D585E",
     GRAY_TEXT_100: "#C4C4CC",
     GRAY_200: "#192227",

@@ -53,7 +53,7 @@ export function Header({ onChange }) {
             <ul>
               {
                 user.isAdmin &&
-                <li><a href="/">Novo prato</a></li>
+                <li><a href="/new">Novo prato</a></li>
               }
 
               <li><a href="/favorites">Meus favoritos</a></li>
