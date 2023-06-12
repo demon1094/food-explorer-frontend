@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Container, Menu, Logo, Cart } from "./styles"
 import Polygon from "../../assets/Polygon.svg"
 import { TfiReceipt } from "react-icons/tfi"
@@ -9,7 +10,7 @@ import { useState } from "react"
 import { useCart } from "../../hooks/Cart"
 import { useAuth } from "../../hooks/auth"
 
-export function Header() {
+export function Header({ onChange }) {
   const [ open, setOpen ] = useState(false)
 
   const { dishesOnCartCounter, clearCart } = useCart()
@@ -45,6 +46,7 @@ export function Header() {
             <Input
               type="text"
               icon={FiSearch}
+              onChange={onChange}
               placeholder="Busque por pratos ou ingredientes"              
             />
 

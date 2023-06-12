@@ -22,7 +22,7 @@ export function Cart() {
   async function handleRemoveDish(dish) {
     removeDishFromCart(dish)
 
-    toastConfig.autoClose = 1000
+    toastConfig.autoClose = 700
     toast.info('Prato removido do carrinho.', toastConfig)
   }
 
@@ -33,7 +33,7 @@ export function Cart() {
       <ToastContainer
         pauseOnFocusLoss={false}
         limit={5}
-        autoClose={1000}
+        autoClose={700}
         closeButton={false}
       />
 

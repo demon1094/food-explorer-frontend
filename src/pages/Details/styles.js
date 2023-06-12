@@ -18,7 +18,7 @@ export const Container = styled.div`
     }
 
     > img {
-      font-size: 25rem;
+      width: 26rem;
     }
 
     > h2 {
@@ -35,12 +35,12 @@ export const Container = styled.div`
     }
 
     > .ingredients {
-      width: 28rem;
+      width: 30rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 2.5rem;
+      gap: 1rem;
       margin: 2rem 0 3rem;
     }
 

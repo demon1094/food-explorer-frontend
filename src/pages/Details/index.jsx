@@ -2,63 +2,102 @@ import { Container } from "./styles"
 
 import { ButtonText } from "../../components/ButtonText"
 import { Ingredient } from "../../components/Ingredient"
+import { Button } from "../../components/Button"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 
+import { toastConfig } from "../../services/toastConfig"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 import { SlArrowLeft } from "react-icons/sl"
 import { TfiReceipt } from "react-icons/tfi"
-import SaladaBigIMG from "../../assets/saladaBig.png"
 
-import { useState } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { useCart } from "../../hooks/Cart"
+
+import { api } from "../../services/api"
 
 export function Details() {
   const [ amount, setAmount ] = useState(1)
+  const [ dish, setDish ] = useState({})
+  const [ ingredients, setIngredients ] = useState([])
+
+  const { addDishToCart } = useCart()
+
+  const navigate = useNavigate()
+  const params = useParams()
 
   const decraseAmount = () => {
     if (amount > 1) {
       setAmount(amount - 1)
     }
   }
+
+  async function handleAddDish() {
+    await addDishToCart({
+      id: dish.id,
+      img: dish.image,
+      name: dish.name,
+      totalPrice: dish.price * amount,
+      amount
+    })
+
+    toastConfig.autoClose = 700
+    toast.success('Prato adicionado ao carrinho.', toastConfig)
+
+    setAmount(1)
+  }
+
+  function handleBack() {
+    navigate(-1)
+  }
+
+  useEffect(() => {
+    async function fetchDish() {
+      const response = await api.get(`/dishes/${params.id}`)
+
+      setDish(response.data)
+      setIngredients(response.data.ingredients)
+    }
+
+    fetchDish()
+  }, [params.id])
   
   return (
     <Container>
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        limit={5}
+        autoClose={700}
+        closeButton={false}
+      />
+
       <Header />
 
       <main>
         <ButtonText
-          href="/"
+          onClick={() => handleBack()}
           icon={SlArrowLeft}
           title="voltar"
         />
 
-        <img src={SaladaBigIMG} alt="Imagem do Prato" />
+        <img src={`${api.defaults.baseURL}/files/${dish.image}`} alt="Imagem do Prato" />
 
-        <h2>Salada Ravanello</h2>
+        <h2>{dish.name}</h2>
 
-        <p>
-          Rabanetes, folhas verdes e molho agridoce 
-          salpicados com gergelim.
-        </p>
+        <p>{dish.description}</p>
 
         <div className="ingredients">
-          <Ingredient
-            name="alface"
-          />
-          <Ingredient
-            name="cebola"
-          />
-          <Ingredient
-            name="pão naan"
-          />
-          <Ingredient
-            name="pepino"
-          />
-          <Ingredient
-            name="rabanete"
-          />
-          <Ingredient
-            name="tomate"
-          />
+          {
+            ingredients.map((ingredient) => (
+              <Ingredient
+                key={ingredient.id}
+                name={ingredient.name}
+              />
+            ))
+          }
         </div>
 
         <div className="qtd-payment">
@@ -68,10 +107,11 @@ export function Details() {
             <button onClick={() => setAmount(amount + 1)}>+</button>
           </div>
 
-          <button className="add-btn">
-            <TfiReceipt />
-            pedir ∙ R$ 25,00
-          </button>
+          <Button
+            icon={TfiReceipt}
+            title={`pedir ∙ ${ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(dish.price) }`}
+            onClick={handleAddDish}
+          />
         </div>
       </main>
 

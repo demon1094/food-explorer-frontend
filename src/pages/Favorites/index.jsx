@@ -10,6 +10,7 @@ import { toastConfig } from "../../services/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
+import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { api } from "../../services/api"
 
@@ -17,6 +18,8 @@ export function Favorites() {
   const [ favoriteDishes, setFavoriteDishes ] = useState([])
 
   toastConfig.autoClose = 700
+
+  const navigate = useNavigate()
 
   async function handleRemoveFavoriteDish(id) {
     await api.delete(`/favorites/${id}`)
@@ -30,6 +33,10 @@ export function Favorites() {
         toast.error('Erro ao remover prato dos favoritos', toastConfig)
       }
     })
+  }
+
+  function handleDetails(id) {
+    navigate(`/details/${id}`)
   }
 
   useEffect(() => {
@@ -63,7 +70,11 @@ export function Favorites() {
               {
                 favoriteDishes.map((favoriteDish) => (
                   <Dish key={favoriteDish.id}>
-                    <img src={`${api.defaults.baseURL}/files/${favoriteDish.image}`} alt="Imagem do prato" />
+                    <img
+                      src={`${api.defaults.baseURL}/files/${favoriteDish.image}`}
+                      alt="Imagem do prato"
+                      onClick={() => handleDetails(favoriteDish.id)}
+                    />
                     <div>
                       <h3>{favoriteDish.name}</h3>
                       <button onClick={() => handleRemoveFavoriteDish(favoriteDish.id)}>

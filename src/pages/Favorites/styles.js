@@ -34,6 +34,12 @@ export const Dish = styled.div`
 
   > img {
     width: 7rem;
+    border-radius: 50%;
+
+    &:hover {
+      cursor: pointer;
+      outline: 3px solid ${ ({ theme }) => theme.COLORS.TOMATO_100 };
+    }
   }
 
   > div {

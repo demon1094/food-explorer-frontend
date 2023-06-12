@@ -12,20 +12,23 @@ import { api } from "../../services/api"
 
 export function Home() {
   const [ dishes, setDishes ] = useState([])
+  const [ search, setSearch ] = useState('')
 
   useEffect(() => {
     async function fetchDishes() {
-      const response = await api.get('/dishes?name')
+      const response = await api.get(`/dishes?name=${search}`)
 
       setDishes(response.data)
     }
 
     fetchDishes()
-  },[])
+  }, [search])
 
   return (
     <Container>
-      <Header />
+      <Header
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
       <main>
         <Introduction>

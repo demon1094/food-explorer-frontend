@@ -86,7 +86,7 @@ export function Dish({ id, img, name, price }) {
         <FiHeart />
       </button>
 
-      <a className="dish-img" href="/details/1">
+      <a className="dish-img" href={`/details/${id}`}>
         <img src={image} alt="Imagem do prato" />
       </a>
 
