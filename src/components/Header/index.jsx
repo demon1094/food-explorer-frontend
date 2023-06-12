@@ -7,14 +7,14 @@ import { FiSearch } from "react-icons/fi"
 import { Input } from "../Input"
 
 import { useState } from "react"
-import { useCart } from "../../hooks/Cart"
+import { useCart } from "../../hooks/cart"
 import { useAuth } from "../../hooks/auth"
 
 export function Header({ onChange }) {
   const [ open, setOpen ] = useState(false)
 
   const { dishesOnCartCounter, clearCart } = useCart()
-  const { signOut } = useAuth()
+  const { user, signOut } = useAuth()
 
   function openMobileMenu() {
     if (!open) {
@@ -51,8 +51,19 @@ export function Header({ onChange }) {
             />
 
             <ul>
+              {
+                user.isAdmin &&
+                <li><a href="/">Novo prato</a></li>
+              }
+
               <li><a href="/favorites">Meus favoritos</a></li>
-              <li><a href="/orders">Meus pedidos</a></li>
+
+              {
+                !user.isAdmin &&
+                <>
+                  <li><a href="/orders">Meus pedidos</a></li>
+                </>
+              }
               <li><a href="/" onClick={handleSignOut}>Sair</a></li>
             </ul>
           </nav>
@@ -62,12 +73,25 @@ export function Header({ onChange }) {
       <Logo href="/">
         <img src={Polygon} />
         <span>food explorer</span>
+        {
+          user.isAdmin &&
+          <span className="admin">admin</span>
+        }
       </Logo>
-
-      <Cart href="/cart">
-        <TfiReceipt />
-        <span>{dishesOnCartCounter}</span>
-      </Cart>
+      
+      {
+        !user.isAdmin &&
+        <Cart href="/cart">
+          <TfiReceipt />
+          <span>{dishesOnCartCounter}</span>
+        </Cart>
+      }
+      {
+        user.isAdmin &&
+        <Cart href="/orders">
+          <TfiReceipt />
+        </Cart>
+      }
     </Container>
   )
 }

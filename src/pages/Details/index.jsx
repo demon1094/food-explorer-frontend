@@ -15,7 +15,9 @@ import { TfiReceipt } from "react-icons/tfi"
 
 import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { useCart } from "../../hooks/Cart"
+
+import { useCart } from "../../hooks/cart"
+import { useAuth } from "../../hooks/auth"
 
 import { api } from "../../services/api"
 
@@ -28,6 +30,7 @@ export function Details() {
 
   const navigate = useNavigate()
   const params = useParams()
+  const { user } = useAuth()
 
   const decraseAmount = () => {
     if (amount > 1) {
@@ -99,20 +102,32 @@ export function Details() {
             ))
           }
         </div>
+        
+        {
+          !user.isAdmin &&
+          <>
+            <div className="qtd-payment">
+              <div>
+                <button onClick={decraseAmount}>-</button>
+                <span>{String(amount).padStart(2, '0')}</span>
+                <button onClick={() => setAmount(amount + 1)}>+</button>
+              </div>
 
-        <div className="qtd-payment">
-          <div>
-            <button onClick={decraseAmount}>-</button>
-            <span>{String(amount).padStart(2, '0')}</span>
-            <button onClick={() => setAmount(amount + 1)}>+</button>
-          </div>
-
+              <Button
+                icon={TfiReceipt}
+                title={`pedir ∙ ${ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(dish.price) }`}
+                onClick={handleAddDish}
+              />
+            </div>
+          </>
+        }
+        
+        {
+          user.isAdmin &&
           <Button
-            icon={TfiReceipt}
-            title={`pedir ∙ ${ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(dish.price) }`}
-            onClick={handleAddDish}
+            title="Editar prato"
           />
-        </div>
+        }
       </main>
 
       <Footer />

@@ -3,16 +3,41 @@ import { Container, StatusContainer } from "./styles"
 
 import { BsCircleFill } from "react-icons/bs"
 
+import { useAuth } from "../../hooks/auth"
+import { api } from "../../services/api"
+
 export function Order({ order_id, status, datetime, description }) {
+  const { user } = useAuth()
+
+  async function handleUpdateStatus(newStatus) {
+    await api.patch(`/orders?id=${order_id}&status=${newStatus}`)
+  }
+
   return (
     <Container>
       <div className="infos">
         <span>{String(order_id).padStart(4, '0000')}</span>
-        <Status status={status} />
+        {
+          !user.isAdmin &&
+          <Status status={status} />
+        }
         <span>{datetime}</span>
       </div>
 
       <p>{description}</p>
+
+      {
+        user.isAdmin &&
+        <select
+          name="status"
+          id="status"
+          onChange={(e) => handleUpdateStatus(e.target.value)}
+        >
+          <option value="pending">Pendente</option>
+          <option value="preparing">Preparando</option>
+          <option value="delivered">Entregue</option>
+        </select>
+      }
     </Container>
   )
 }

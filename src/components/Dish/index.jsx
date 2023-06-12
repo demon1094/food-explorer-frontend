@@ -6,7 +6,8 @@ import { Button } from "../Button"
 import { FiHeart } from "react-icons/fi"
 
 import { useState, useEffect } from "react"
-import { useCart } from "../../hooks/Cart"
+import { useCart } from "../../hooks/cart"
+import { useAuth } from "../../hooks/auth"
 
 import { toastConfig } from "../../services/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
@@ -19,6 +20,8 @@ export function Dish({ id, img, name, price }) {
   const [ amount, setAmount ] = useState(1)
   
   const image = `${api.defaults.baseURL}/files/${img}`
+
+  const { user } = useAuth()
 
   const { addDishToCart } = useCart()
 
@@ -82,6 +85,7 @@ export function Dish({ id, img, name, price }) {
         closeButton={false}
       />
 
+
       <button className="favorite-btn" onClick={handleFavorited}>
         <FiHeart />
       </button>
@@ -94,17 +98,30 @@ export function Dish({ id, img, name, price }) {
 
       <h6>{ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(price) }</h6>
 
-      <div className="add-sub">
-        <button onClick={decreseAmount}>-</button>
-        <span>{String(amount).padStart(2, '0')}</span>
-        <button onClick={() => setAmount(amount + 1)}>+</button>
-      </div>
+      {
+        !user.isAdmin &&
+        <>
+          <div className="add-sub">
+            <button onClick={decreseAmount}>-</button>
+            <span>{String(amount).padStart(2, '0')}</span>
+            <button onClick={() => setAmount(amount + 1)}>+</button>
+          </div>
 
-      <Button
-        title="incluir"
-        className="add-btn"
-        onClick={handleAddDish}
-      />
+          <Button
+            title="incluir"
+            className="add-btn"
+            onClick={handleAddDish}
+          />
+        </>
+      }
+
+      {
+        user.isAdmin &&
+        <Button
+          title="Editar"
+          className="edit-btn"
+        />
+      }
     </Container>
   )
 }

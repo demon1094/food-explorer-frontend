@@ -93,6 +93,12 @@ export const Logo = styled.a`
   font-weight: 600;
   text-decoration: none;
   color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
+
+  > .admin {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: ${ ({ theme }) => theme.COLORS.CAKE_200 };
+  }
 `
 
 export const Cart = styled.a`

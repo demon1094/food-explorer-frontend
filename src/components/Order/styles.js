@@ -25,6 +25,21 @@ export const Container = styled.div`
     text-align: justify;
     line-height: 2rem;
   }
+
+  > select {
+    appearance: none;
+    width: 100%;
+    height: 5rem;
+    margin: 0;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: .5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    cursor: inherit;
+    background: ${ ({ theme }) => theme.COLORS.INPUT_BG };
+    color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT_300 };
+  }
 `
 
 export const StatusContainer = styled.div`

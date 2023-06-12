@@ -23,7 +23,7 @@ export const OrdersWrapper = styled.section`
     color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
   }
 
-  > div:nth-child(1) {
+  > div:nth-child(2) {
     width: 100%;
     display: flex;
     flex-direction: column;
