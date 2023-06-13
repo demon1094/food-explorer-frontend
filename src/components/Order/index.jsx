@@ -42,7 +42,7 @@ export function Order({ order_id, status, datetime, description }) {
       <p>{description}</p>
 
       {
-        user.isAdmin &&
+        user.isAdmin ?
         <select
           name="status"
           id="status"
@@ -52,6 +52,8 @@ export function Order({ order_id, status, datetime, description }) {
           <option value="preparing" selected={status === 'preparing'}>Preparando</option>
           <option value="delivered" selected={status === 'delivered'}>Entregue</option>
         </select>
+        :
+        <></>
       }
     </Container>
   )

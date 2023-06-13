@@ -49,6 +49,8 @@ export const Dish = styled.div`
 
   > img {
     width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
   }
 
   > .dish-wrapper {

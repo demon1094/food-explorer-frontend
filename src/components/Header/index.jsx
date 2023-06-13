@@ -52,17 +52,17 @@ export function Header({ onChange }) {
 
             <ul>
               {
-                user.isAdmin &&
+                user.isAdmin ?
                 <li><a href="/new">Novo prato</a></li>
+                :
+                <></>
               }
 
               <li><a href="/favorites">Meus favoritos</a></li>
 
               {
                 !user.isAdmin &&
-                <>
-                  <li><a href="/orders">Meus pedidos</a></li>
-                </>
+                <li><a href="/orders">Meus pedidos</a></li>
               }
               <li><a href="/" onClick={handleSignOut}>Sair</a></li>
             </ul>
@@ -74,20 +74,22 @@ export function Header({ onChange }) {
         <img src={Polygon} />
         <span>food explorer</span>
         {
-          user.isAdmin &&
+          user.isAdmin ?
           <span className="admin">admin</span>
+          :
+          <></>
         }
       </Logo>
       
       {
-        !user.isAdmin &&
+        !user.isAdmin ?
         <Cart href="/cart">
           <TfiReceipt />
           <span>{dishesOnCartCounter}</span>
         </Cart>
-      }
-      {
-        user.isAdmin &&
+
+        :
+
         <Cart href="/orders">
           <TfiReceipt />
         </Cart>
