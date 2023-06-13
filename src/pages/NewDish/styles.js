@@ -60,6 +60,12 @@ export const Container = styled.div`
           }
         }
 
+        p {
+          font-family: 'Roboto', sans-serif;
+          font-size: 1.2rem;
+          color: ${ ({ theme }) => theme.COLORS.TOMATO_300 };
+        }
+
         textarea {
           resize: none;
           outline: none;

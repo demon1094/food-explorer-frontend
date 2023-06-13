@@ -10,6 +10,10 @@ import { Input } from "../../components/Input"
 import { SlArrowLeft } from "react-icons/sl"
 import { BsCloudDownload } from "react-icons/bs"
 
+import { toastConfig } from "../../services/toastConfig"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
@@ -27,6 +31,14 @@ export function NewDish() {
   const navigate = useNavigate()
 
   async function handleCreateDish() {
+    if (!name || !price || !description || !ingredients) {
+      return toast.error('Preencha todos os campos e coloque ao menos 1 ingrediente.', toastConfig)
+    }
+
+    if (!imageFile) {
+      return toast.error('Imagem é obrigatório', toastConfig)
+    }
+
     await api.post('/dishes', {
       name,
       price,
@@ -36,13 +48,16 @@ export function NewDish() {
     })
     .then((response) => {
       insertImage(response.data)
-      alert('Prato criado com sucesso')
+      toast.success('Prato criado com sucesso. Redirecionando...', toastConfig)
+      setTimeout(() => {
+        navigate(`/details/${response.data}`)
+      }, 1500)
     })
     .catch((error) => {
       if (error.response) {
-        alert(error.response.data.message)
+        toast.error(error.response.data.message, toastConfig)
       } else {
-        alert('Não foi possível cadastrar o prato.')
+        toast.error('Erro inesperado ao cadastrar o prato.', toastConfig)
       }
     })
   }
@@ -69,6 +84,13 @@ export function NewDish() {
 
   return (
     <Container>
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        limit={5}
+        autoClose={700}
+        closeButton={false}
+      />
+
       <Header />
 
       <main>
@@ -89,6 +111,14 @@ export function NewDish() {
               type="file"
               onChange={(e) => setImageFile(e.target.files[0])}
             />
+            {
+              imageFile &&
+              <p>Imagem selecionada: {imageFile.name}</p>
+            }
+            {
+              !imageFile &&
+              <p>Nenhuma imagem selecionada.</p>
+            }
           </div>
           
           <div className="input-wrapper">
