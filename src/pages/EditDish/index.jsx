@@ -7,51 +7,67 @@ import { Footer } from "../../components/Footer"
 import { Button } from "../../components/Button"
 import { Input } from "../../components/Input"
 
-import { SlArrowLeft } from "react-icons/sl"
 import { BsCloudDownload } from "react-icons/bs"
+import { SlArrowLeft } from "react-icons/sl"
 
-import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { toastConfig } from "../../services/toastConfig"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
+import { useParams, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
 
 import { api } from "../../services/api"
 
-export function NewDish() {
+export function EditDish() {
   const [ imageFile, setImageFile ] = useState(null)
   const [ name, setName ] = useState('')
-  const [ category, setCategory ] = useState('meal')
+  const [ category, setCategory ] = useState('')
   const [ newIngredient, setNewIngredient ] = useState('')
   const [ ingredients, setIngredients ] = useState([])
-  const [ price, setPrice ] = useState(0)
+  const [ price, setPrice ] = useState('')
   const [ description, setDescription ] = useState('')
 
+  const params = useParams()
   const navigate = useNavigate()
 
-  async function handleCreateDish() {
-    await api.post('/dishes', {
+  toastConfig.autoClose = 700
+
+  async function handleUpdateDish() {
+    if (!name || !price || !description || !ingredients) {
+      return toast.error('Preencha todos os campos e coloque ao menos 1 ingrediente.', toastConfig)
+    }
+
+    await api.put(`/dishes?dish_id=${params.id}`, {
       name,
       price,
       description,
       category,
       ingredients
     })
-    .then((response) => {
-      insertImage(response.data)
-      alert('Prato criado com sucesso')
+    .then(() => {
+      if (imageFile) {
+        insertImage()
+      }
+      toast.success('Prato atualizado com sucesso. Redirecionando...', toastConfig)
+      setTimeout(() => {
+        navigate(`/details/${params.id}`)
+      }, 1500)
     })
     .catch((error) => {
       if (error.response) {
-        alert(error.response.data.message)
+        toast.error(error.response.data.message, toastConfig)
       } else {
-        alert('Não foi possível cadastrar o prato.')
+        toast.error('Erro inesperado ao editar o prato.', toastConfig)
       }
     })
   }
 
-  async function insertImage(dish_id) {
+  async function insertImage() {
     const fileUploadForm = new FormData()
     fileUploadForm.append('image', imageFile)
 
-    await api.patch(`/dishes/image?dish_id=${dish_id}`, fileUploadForm)
+    await api.patch(`/dishes/image?dish_id=${params.id}`, fileUploadForm)
   }
 
   function handleAddIngredient() {
@@ -67,18 +83,47 @@ export function NewDish() {
     navigate(-1)
   }
 
+  useEffect(() => {
+    async function fetchDish() {
+      await api.get(`/dishes/${params.id}`)
+      .then((response) => {
+        setName(response.data.name)
+        setCategory(response.data.category)
+        setPrice(response.data.price)
+        setDescription(response.data.description)
+        setIngredients(response.data.ingredients.map(ingredient => ingredient.name))
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message, toastConfig)
+        } else {
+          toast.error('Erro inesperado ao buscar informações do prato.', toastConfig)
+        }
+      })
+    }
+    
+    fetchDish()
+  }, [params.id])
+
   return (
     <Container>
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        limit={5}
+        autoClose={700}
+        closeButton={false}
+      />
+
       <Header />
 
       <main>
         <ButtonText
           icon={SlArrowLeft}
-          title="voltar"
           onClick={handleBack}
+          title="voltar"
         />
 
-        <h1>Novo prato</h1>
+        <h1>Editar prato</h1>
 
         <form>
           <div className="input-wrapper">
@@ -89,6 +134,14 @@ export function NewDish() {
               type="file"
               onChange={(e) => setImageFile(e.target.files[0])}
             />
+            {
+              imageFile &&
+              <p>Imagem selecionada: {imageFile.name}</p>
+            }
+            {
+              !imageFile &&
+              <p>Nenhuma imagem selecionada, a imagem atual será mantida.</p>
+            }
           </div>
           
           <div className="input-wrapper">
@@ -97,6 +150,7 @@ export function NewDish() {
               id="name"
               type="text"
               placeholder="Ex: Salada Ceasar"
+              value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -108,16 +162,16 @@ export function NewDish() {
               id="category"
               onChange={(e) => setCategory(e.target.value)}
             >
-              <option value="meal">Refeição</option>
-              <option value="dessert">Sobremesa</option>
-              <option value="drink">Bebida</option>
+              <option value="meal" selected={category === 'meal'}>Refeição</option>
+              <option value="dessert" selected={category === 'dessert'}>Sobremesa</option>
+              <option value="drink" selected={category === 'drink'}>Bebida</option>
             </select>
           </div>
 
           <div className="input-wrapper">
             <label htmlFor="ingredients">Ingredientes</label>
             <div className="ingredients">
-              {
+              { 
                 ingredients.map((ingredient, index) => (
                   <NoteItem
                     key={index}
@@ -142,6 +196,7 @@ export function NewDish() {
               id="price"
               type="number"
               placeholder="R$ 00,00"
+              value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
           </div>
@@ -155,13 +210,14 @@ export function NewDish() {
               rows="6"
               maxLength="200"
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição (max: 200 caractéres)"
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
 
           <Button
-            onClick={handleCreateDish}
-            title="Criar prato"
+            onClick={handleUpdateDish}
+            title="Salvar alterações"
           />
         </form>
       </main>

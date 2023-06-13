@@ -126,6 +126,7 @@ export function Details() {
           user.isAdmin &&
           <Button
             title="Editar prato"
+            to={`/edit/${params.id}`}
           />
         }
       </main>

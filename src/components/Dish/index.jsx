@@ -120,6 +120,7 @@ export function Dish({ id, img, name, price }) {
         <Button
           title="Editar"
           className="edit-btn"
+          to={`/edit/${id}`}
         />
       }
     </Container>
