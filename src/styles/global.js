@@ -12,7 +12,7 @@ export default createGlobalStyle`
   }
 
   body {
-    height: 100vh;
+    height: 100%;
     font-size: 1.6rem;
     overflow-x: hidden;
 

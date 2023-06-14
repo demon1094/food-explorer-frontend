@@ -2,11 +2,11 @@ import styled from "styled-components"
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   font-family: 'Poppins', sans-serif;
 
   > main {
-    min-height: 70vh;
+    min-height: 100%;
     padding: 6rem 3.5rem;
     background: ${ ({ theme }) => theme.COLORS.BODY_BG };
 
