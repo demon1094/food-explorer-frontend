@@ -2,25 +2,39 @@ import styled from "styled-components"
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   font-family: 'Poppins', sans-serif;
 
   > main {
     width: 100%;
+    min-height: 100%;
     padding: 6rem 3rem;
     background: ${ ({ theme }) => theme.COLORS.BODY_BG };
 
     h1 {
       font-size: 3.2rem;
       font-weight: 500;
-      margin-bottom: 3rem;
+      margin-bottom: 5rem;
       color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    > main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h1 {
+        margin-bottom: 10rem;
+      }
     }
   }
 `
 
 export const PaymentWrapper = styled.div`
   width: 100%;
+  max-width: 87rem;
   min-height: 44rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -120,6 +134,7 @@ export const PaymentWrapper = styled.div`
       align-self: start;
 
       form {
+        width: 100%;
         display: flex;
         flex-direction: column;
 
@@ -143,6 +158,7 @@ export const PaymentWrapper = styled.div`
         .valid-cvc {
           display: flex;
           align-items: center;
+          justify-content: space-between;
           gap: 2rem;
           margin-bottom: 1rem;
         }
