@@ -10,13 +10,13 @@ import { FiCheckCircle } from "react-icons/fi"
 import { FaRegClock } from "react-icons/fa"
 import { MdPix } from "react-icons/md"
 
-import { toastConfig } from "../../services/toastConfig"
+import { toastConfig } from "../../configs/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { useCart } from "../../hooks/Cart"
+import { useCart } from "../../hooks/cart"
 import { useAuth } from "../../hooks/auth"
 
 import { api } from "../../services/api"
@@ -79,7 +79,7 @@ export function Payment() {
       <ToastContainer
         pauseOnFocusLoss={false}
         limit={5}
-        autoClose={1000}
+        autoClose={700}
         closeButton={false}
       />
 

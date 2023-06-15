@@ -9,7 +9,7 @@ import { useState, useEffect } from "react"
 import { useCart } from "../../hooks/cart"
 import { useAuth } from "../../hooks/auth"
 
-import { toastConfig } from "../../services/toastConfig"
+import { toastConfig } from "../../configs/toastConfig"
 import "react-toastify/dist/ReactToastify.css"
 import { toast } from "react-toastify"
 
@@ -24,8 +24,6 @@ export function Dish({ id, img, name, price, description }) {
   const { user } = useAuth()
   
   const { addDishToCart } = useCart()
-  
-  toastConfig.autoClose = 700
   
   async function handleFavorited() {
     if (!favorited) {

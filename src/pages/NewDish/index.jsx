@@ -10,7 +10,7 @@ import { Input } from "../../components/Input"
 import { SlArrowLeft } from "react-icons/sl"
 import { BsCloudDownload } from "react-icons/bs"
 
-import { toastConfig } from "../../services/toastConfig"
+import { toastConfig } from "../../configs/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 

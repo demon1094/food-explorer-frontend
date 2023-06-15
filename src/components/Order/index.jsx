@@ -3,7 +3,7 @@ import { Container, StatusContainer } from "./styles"
 
 import { BsCircleFill } from "react-icons/bs"
 
-import { toastConfig } from "../../services/toastConfig"
+import { toastConfig } from "../../configs/toastConfig"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
@@ -16,7 +16,6 @@ export function Order({ order_id, status, datetime, description }) {
   async function handleUpdateStatus(newStatus) {
     await api.patch(`/orders?id=${order_id}&status=${newStatus}`)
     .then(() => {
-      toastConfig.autoClose = 700
       toast.success('Status do pedido atualizado.', toastConfig)
     })
     .catch((error) => {

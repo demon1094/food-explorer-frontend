@@ -11,6 +11,9 @@ import { useState, useEffect } from "react"
 
 import { api } from "../../services/api"
 
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 export function Home() {
   const [ dishes, setDishes ] = useState([])
   const [ search, setSearch ] = useState('')
@@ -27,6 +30,13 @@ export function Home() {
 
   return (
     <Container>
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        limit={5}
+        autoClose={700}
+        closeButton={false}
+      />
+
       <Header
         onChange={(e) => setSearch(e.target.value)}
       />

@@ -10,7 +10,7 @@ import { Input } from "../../components/Input"
 import { BsCloudDownload } from "react-icons/bs"
 import { SlArrowLeft } from "react-icons/sl"
 
-import { toastConfig } from "../../services/toastConfig"
+import { toastConfig } from "../../configs/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
@@ -30,8 +30,6 @@ export function EditDish() {
 
   const params = useParams()
   const navigate = useNavigate()
-
-  toastConfig.autoClose = 700
 
   async function handleUpdateDish() {
     if (!name || !price || !description || !ingredients) {

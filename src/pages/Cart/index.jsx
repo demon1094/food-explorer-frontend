@@ -7,11 +7,11 @@ import { Button } from "../../components/Button"
 
 import { BsCartX } from "react-icons/bs"
 
-import { toastConfig } from "../../services/toastConfig"
+import { toastConfig } from "../../configs/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
-import { useCart } from "../../hooks/Cart"
+import { useCart } from "../../hooks/cart"
 import { api } from "../../services/api"
 
 export function Cart() {
@@ -22,7 +22,6 @@ export function Cart() {
   async function handleRemoveDish(dish) {
     removeDishFromCart(dish)
 
-    toastConfig.autoClose = 700
     toast.info('Prato removido do carrinho.', toastConfig)
   }
 

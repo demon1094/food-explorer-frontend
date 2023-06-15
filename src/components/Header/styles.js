@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 export const Container = styled.header`
   height: 11.5rem;
@@ -134,7 +135,7 @@ export const MenuDesktop = styled.div`
   }
 `
 
-export const Logo = styled.a`
+export const Logo = styled(Link)`
   display: flex;
   align-items: center;
   gap: .8rem;

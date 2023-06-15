@@ -5,7 +5,7 @@ import { createContext, useContext, useState, useEffect } from "react"
 import { api } from "../services/api"
 
 import { toast } from "react-toastify"
-import { toastConfig } from "../services/toastConfig"
+import { toastConfig } from "../configs/toastConfig"
 
 const AuthContext = createContext({})
 

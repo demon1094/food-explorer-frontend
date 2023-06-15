@@ -12,6 +12,8 @@ import { useCart } from "../../hooks/cart"
 import { useAuth } from "../../hooks/auth"
 import { useState } from "react"
 
+import { Link } from "react-router-dom"
+
 export function Header({ onChange }) {
   const [ open, setOpen ] = useState(false)
 
@@ -70,7 +72,7 @@ export function Header({ onChange }) {
         </nav>
       </MenuMobile>
 
-      <Logo href="/">
+      <Logo to="/">
         <img src={Polygon} />
         <span>food explorer</span>
         {
@@ -98,11 +100,11 @@ export function Header({ onChange }) {
               <></>
             }
 
-            <li><a href="/favorites">Meus favoritos</a></li>
+            <li><Link to="/favorites">Meus favoritos</Link></li>
 
             {
               !user.isAdmin &&
-              <li><a href="/orders">Meus pedidos</a></li>
+              <li><Link to="/orders">Meus pedidos</Link></li>
             }
           </ul>
         </nav>

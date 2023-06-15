@@ -6,7 +6,7 @@ import { Button } from "../../components/Button"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 
-import { toastConfig } from "../../services/toastConfig"
+import { toastConfig } from "../../configs/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
@@ -47,7 +47,6 @@ export function Details() {
       amount
     })
 
-    toastConfig.autoClose = 700
     toast.success('Prato adicionado ao carrinho.', toastConfig)
 
     setAmount(1)

@@ -6,7 +6,7 @@ import { Footer } from "../../components/Footer"
 
 import { AiOutlineStar } from "react-icons/ai"
 
-import { toastConfig } from "../../services/toastConfig"
+import { toastConfig } from "../../configs/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
@@ -16,8 +16,6 @@ import { api } from "../../services/api"
 
 export function Favorites() {
   const [ favoriteDishes, setFavoriteDishes ] = useState([])
-
-  toastConfig.autoClose = 700
 
   const navigate = useNavigate()
 

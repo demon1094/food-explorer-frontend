@@ -5,6 +5,7 @@ import { Button } from "../../components/Button"
 import { Input } from "../../components/Input"
 import { Logo } from "../../components/Logo"
 
+import { toastConfig } from "../../configs/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
@@ -13,19 +14,6 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 export function SignUp() {
-  const toastConfig = {
-    position: "top-right",
-    autoClose: 1500,
-    hideProgressBar: false,
-    closeOnClick: false,
-    pauseOnHover: false,
-    draggable: true,
-    draggablePercent: 60,
-    progress: undefined,
-    theme: "dark",
-    pauseOnFocusLoss: false
-  }
-
   const [ name, setName ] = useState('')
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
@@ -54,7 +42,7 @@ export function SignUp() {
       toast.success('Conta criada com sucesso! Redirecionando...', toastConfig)
       setTimeout(() => {
         navigate('/')
-      }, 2300)
+      }, 1800)
     })
     .catch(error => {
       if (error.response) {
@@ -70,7 +58,7 @@ export function SignUp() {
       <ToastContainer
         pauseOnFocusLoss={false}
         pauseOnHover={false}
-        autoClose={1500}
+        autoClose={700}
         limit={5}
         closeButton={false}
         theme="dark"
