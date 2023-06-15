@@ -12,6 +12,7 @@ export const Container = styled.div`
 
   > form {
     width: 100%;
+    max-width: 76.8rem;
     margin: 0 auto;
 
     .input-wrapper {
@@ -28,13 +29,22 @@ export const Container = styled.div`
       }
     }
 
-    button {
+    > a:nth-child(4) {
+      justify-content: center;
+      font-size: 1.8rem;
       margin-top: 4rem;
     }
   }
 
-  > a {
-    justify-content: center;
-    font-size: 1.8rem;
+
+  @media screen and (min-width: 768px) {
+    padding: 4rem;
+    align-items: center;
+
+    > form {
+      padding: 10rem 7rem;
+      border-radius: 1rem;
+      background: ${ ({ theme }) => theme.COLORS.HEADER_BG };
+    }
   }
 `

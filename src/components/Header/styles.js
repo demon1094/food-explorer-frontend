@@ -10,6 +10,7 @@ export const Container = styled.header`
 
   > .desktop-logout {
     display: none;
+    cursor: pointer;
   }
 
   @media screen and (min-width: 1024px) {

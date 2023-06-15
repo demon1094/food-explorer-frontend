@@ -196,4 +196,14 @@ export const Dishes = styled.div`
       }
     }
   }
+
+  @media screen and (min-width: 1296px) {
+    gap: 6rem;
+    
+    > .dish-category {
+      h3 {
+        font-size: 2.5rem;
+      }
+    }
+  }
 `
