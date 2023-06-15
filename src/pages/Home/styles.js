@@ -2,11 +2,12 @@ import styled from "styled-components"
 
 export const Container = styled.div`
   width: 100vw;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 
   > main {
+    height: 100%;
     padding: 6rem 3rem;
     font-family: 'Poppins', sans-serif;
     background: ${ ({ theme }) => theme.COLORS.BODY_BG };

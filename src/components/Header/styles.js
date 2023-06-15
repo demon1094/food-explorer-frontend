@@ -7,69 +7,82 @@ export const Container = styled.header`
   justify-content: space-between;
   padding: 3rem;
   background: ${ ({ theme }) => theme.COLORS.HEADER_BG };
+
+  > .desktop-logout {
+    display: none;
+  }
+
+  @media screen and (min-width: 1024px) {
+    justify-content: center;
+    gap: 4rem;
+
+    > .desktop-logout {
+      display: block;
+      font-size: 2.5rem;
+      color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
+    }
+  }
 `
 
-export const Menu = styled.div`
-  > .menu-mobile {
-    .menu-btn {
-      display: flex;
-      flex-direction: column;
-      gap: .6rem;
-      
-      &:hover {
-        cursor: pointer;
-        filter: brightness(0.6);
-      }
+export const MenuMobile = styled.div`
+  > .menu-btn {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
     
-      div {
-        width: 2.8rem;
-        height: .3rem;
-        border-radius: .5rem;
-        transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        background: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
-      }
+    &:hover {
+      cursor: pointer;
+      filter: brightness(0.6);
     }
-
-    nav {
-      display: none;
-      position: absolute;
-      z-index: 999;
-      width: 100%;
-      height: 100%;
-      top: 11.5rem;
-      left: 0rem;
-      padding: 4rem 2.5rem 0;
-      transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      font-family: 'Poppins', sans-serif;
-      background: ${ ({ theme }) => theme.COLORS.BODY_BG };
-
-      ul {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-        margin-top: 5rem;
-        padding-left: 1rem;
-        list-style: none;
   
-        li a {
-          padding-bottom: 1rem;
-          font-size: 2rem;
-          text-decoration: none;
-          color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
-
-          &:hover {
-            filter: brightness(0.6);
-          }
-        }
-      }
-    }
-
-    nav.active {
-      display: block;
+    div {
+      width: 2.8rem;
+      height: .3rem;
+      border-radius: .5rem;
+      transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
     }
   }
 
-  > .menu-mobile .menu-btn.active {
+  > nav {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    top: 11.5rem;
+    left: 0rem;
+    padding: 4rem 2.5rem 0;
+    transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Poppins', sans-serif;
+    background: ${ ({ theme }) => theme.COLORS.BODY_BG };
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      margin-top: 5rem;
+      padding-left: 1rem;
+      list-style: none;
+
+      li a {
+        padding-bottom: 1rem;
+        font-size: 2rem;
+        text-decoration: none;
+        color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
+
+        &:hover {
+          filter: brightness(0.6);
+        }
+      }
+    }
+  }
+
+  > nav.active {
+    display: block;
+  }
+
+  > .menu-btn.active {
     div:nth-child(1) {
       transform: translateY(.9rem) rotate(45deg);
     }
@@ -82,6 +95,42 @@ export const Menu = styled.div`
       transform: translateY(-.9rem) rotate(-45deg);
     }
   }
+
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
+`
+
+export const MenuDesktop = styled.div`
+  font-family: 'Poppins', sans-serif;
+
+  > nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    div {
+      width: 31rem;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+
+      li a {
+        font-size: 1.6rem;
+        text-decoration: none;
+        white-space: nowrap;
+        color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
+      }
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    display: none;
+  }
 `
 
 export const Logo = styled.a`
@@ -92,6 +141,7 @@ export const Logo = styled.a`
   font-size: 2.1rem;
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
   color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
 
   > .admin {
@@ -101,7 +151,7 @@ export const Logo = styled.a`
   }
 `
 
-export const Cart = styled.a`
+export const MobileCart = styled.a`
   position: relative;
   text-decoration: none;
 
@@ -125,5 +175,19 @@ export const Cart = styled.a`
     font-weight: 500;
     color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT };
     background: ${ ({ theme }) => theme.COLORS.TOMATO_100 };
+  }
+
+  @media screen and (min-width: 1296px) {
+    display: none;
+  }
+`
+
+export const DesktopCart = styled.div`
+  a {
+    width: 17rem;
+  }
+
+  @media screen and (max-width: 1295px) {
+    display: none;
   }
 `
