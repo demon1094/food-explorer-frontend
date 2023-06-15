@@ -58,6 +58,7 @@ export function Home() {
                     img={dish.image}
                     name={dish.name}
                     price={dish.price}
+                    description={dish.description}
                   />
                 ))
               }
@@ -76,6 +77,7 @@ export function Home() {
                     img={dish.image}
                     name={dish.name}
                     price={dish.price}
+                    description={dish.description}
                   />
                 ))
               }
@@ -94,6 +96,7 @@ export function Home() {
                     img={dish.image}
                     name={dish.name}
                     price={dish.price}
+                    description={dish.description}
                   />
                 ))
               }

@@ -10,12 +10,12 @@ import { useCart } from "../../hooks/cart"
 import { useAuth } from "../../hooks/auth"
 
 import { toastConfig } from "../../services/toastConfig"
-import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import { toast } from "react-toastify"
 
 import { api } from "../../services/api"
 
-export function Dish({ id, img, name, price }) {
+export function Dish({ id, img, name, price, description }) {
   const [ favorited, setFavorited ] = useState(false)
   const [ amount, setAmount ] = useState(1)
   
@@ -79,13 +79,6 @@ export function Dish({ id, img, name, price }) {
 
   return (
     <Container favorited={favorited}>
-      <ToastContainer
-        pauseOnFocusLoss={false}
-        autoClose={700}
-        limit={5}
-        closeButton={false}
-      />
-
       <button className="favorite-btn" onClick={handleFavorited}>
         <FiHeart />
       </button>
@@ -96,33 +89,41 @@ export function Dish({ id, img, name, price }) {
 
       <h4>{name}</h4>
 
+      <p>{description}</p>
+
       <h6>{ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(price) }</h6>
 
-      {
-        !user.isAdmin &&
-        <>
-          <div className="add-sub">
-            <button onClick={decreseAmount}>-</button>
-            <span>{String(amount).padStart(2, '0')}</span>
-            <button onClick={() => setAmount(amount + 1)}>+</button>
-          </div>
+      <footer>
+        {
+          !user.isAdmin &&
+          <>
+            <div className="add-sub">
+              <button onClick={decreseAmount}>-</button>
+              <span>{String(amount).padStart(2, '0')}</span>
+              <button onClick={() => setAmount(amount + 1)}>+</button>
+            </div>
 
+            <Button
+              title="incluir"
+              className="add-btn"
+              onClick={handleAddDish}
+            />
+          </>
+        }
+
+        {
+          user.isAdmin ?
           <Button
-            title="incluir"
-            className="add-btn"
-            onClick={handleAddDish}
+            title="Editar"
+            className="edit-btn"
+            to={`/edit/${id}`}
           />
-        </>
-      }
 
-      {
-        user.isAdmin &&
-        <Button
-          title="Editar"
-          className="edit-btn"
-          to={`/edit/${id}`}
-        />
-      }
+          :
+
+          <></>
+        }
+      </footer>
     </Container>
   )
 }

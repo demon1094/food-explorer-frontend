@@ -169,6 +169,7 @@ export const Introduction = styled.div`
 
 export const Dishes = styled.div`
   width: 100%;
+  max-width: 112rem;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
