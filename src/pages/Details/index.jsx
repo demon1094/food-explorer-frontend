@@ -85,50 +85,58 @@ export function Details() {
           icon={SlArrowLeft}
           title="voltar"
         />
-
-        <img src={`${api.defaults.baseURL}/files/${dish.image}`} alt="Imagem do Prato" />
-
-        <h2>{dish.name}</h2>
-
-        <p>{dish.description}</p>
-
-        <div className="ingredients">
-          {
-            ingredients.map((ingredient) => (
-              <Ingredient
-                key={ingredient.id}
-                name={ingredient.name}
-              />
-            ))
-          }
-        </div>
         
-        {
-          !user.isAdmin &&
-          <>
-            <div className="qtd-payment">
-              <div>
-                <button onClick={decraseAmount}>-</button>
-                <span>{String(amount).padStart(2, '0')}</span>
-                <button onClick={() => setAmount(amount + 1)}>+</button>
-              </div>
+        <div className="dish">
+          <img src={`${api.defaults.baseURL}/files/${dish.image}`} alt="Imagem do Prato" />
 
-              <Button
-                icon={TfiReceipt}
-                title={`pedir ∙ ${ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(dish.price) }`}
-                onClick={handleAddDish}
-              />
+          <div className="details">
+            <h2>{dish.name}</h2>
+
+            <p>{dish.description}</p>
+
+            <div className="ingredients">
+              {
+                ingredients.map((ingredient) => (
+                  <Ingredient
+                    key={ingredient.id}
+                    name={ingredient.name}
+                  />
+                ))
+              }
             </div>
-          </>
-        }
-        
-        {
-          user.isAdmin &&
-          <Button
-            title="Editar prato"
-            to={`/edit/${params.id}`}
-          />
-        }
+            
+            {
+              !user.isAdmin &&
+              <>
+                <div className="qtd-payment">
+                  <div>
+                    <button onClick={decraseAmount}>-</button>
+                    <span>{String(amount).padStart(2, '0')}</span>
+                    <button onClick={() => setAmount(amount + 1)}>+</button>
+                  </div>
+
+                  <Button
+                    icon={TfiReceipt}
+                    title={`pedir ∙ ${ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(dish.price) }`}
+                    onClick={handleAddDish}
+                  />
+                </div>
+              </>
+            }
+            
+            {
+              user.isAdmin ?
+              <Button
+                title="Editar prato"
+                to={`/edit/${params.id}`}
+              />
+
+              :
+
+              <></>
+            }
+          </div>
+        </div>
       </main>
 
       <Footer />
