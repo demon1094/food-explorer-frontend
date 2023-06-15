@@ -1,6 +1,7 @@
 import { Container, Introduction, Dishes } from "./styles"
 
-import MarketingIMG from "../../assets/saboresinigualaveis.png"
+import MarketingDesktopIMG from "../../assets/introduction-img.png"
+import MarketingMobileIMG from "../../assets/saboresinigualaveis.png"
 
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
@@ -32,7 +33,8 @@ export function Home() {
 
       <main>
         <Introduction>
-          <img src={MarketingIMG} />
+          <img src={MarketingMobileIMG} />
+          <img src={MarketingDesktopIMG} />
 
           <div>
             <h3>Sabores inigualáveis</h3>
