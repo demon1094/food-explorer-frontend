@@ -3,24 +3,33 @@ import styled from "styled-components"
 export const Container = styled.div`
   width: 100%;
   height: 100%;
+  background: ${ ({ theme }) => theme.COLORS.BODY_BG };
 
   > main {
-    width: 100%;
+    max-width: 112rem;
     height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 3rem;
     padding: 5rem 3rem;
+    margin: 0 auto;
     font-family: 'Poppins', sans-serif;
-    background: ${ ({ theme }) => theme.COLORS.BODY_BG };
+
+    > a {
+      align-self: flex-start;
+    }
 
     h1 {
       font-size: 3.2rem;
       font-weight: 500;
+      align-self: flex-start;
       color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT_300 };
     }
 
     form {
+      width: 100%;
+      max-width: 112rem;
       display: flex;
       flex-direction: column;
       gap: 2.5rem;
@@ -97,12 +106,18 @@ export const Container = styled.div`
           width: 100%;
           min-height: 5.5rem;
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
           gap: 1rem;
           padding: .8rem;
           border-radius: .8rem;
           background: ${ ({ theme }) => theme.COLORS.INPUT_BG };
         }
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      h1 {
+        font-size: 4rem;
       }
     }
   }
