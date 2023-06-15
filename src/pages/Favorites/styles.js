@@ -19,15 +19,36 @@ export const Container = styled.div`
 
     .favorite-dishes-wrapper {
       width: 100%;
+      max-width: 112rem;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 3rem;
     }
   }
+
+  @media screen and (min-width: 768px) {
+    > main {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      h1 {
+        margin-bottom: 10rem;
+      }
+
+      .favorite-dishes-wrapper {
+        display: grid;
+        justify-items: center;
+        gap: 5rem;
+        grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+      }
+    }
+  }
 `
 
 export const Dish = styled.div`
+  min-width: 30rem;
   display: flex;
   align-items: center;
   gap: 1.5rem;
