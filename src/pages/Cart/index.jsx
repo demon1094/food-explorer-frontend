@@ -61,16 +61,18 @@ export function Cart() {
               ))
             }
             </section>
+            
+            <div className="value-payment">
+              <div className="value">
+                <h5>Total:</h5>
+                <span>{ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(totalValue) }</span>
+              </div>
 
-            <div className="value">
-              <h5>Total:</h5>
-              <span>{ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(totalValue) }</span>
+              <Button
+                title="Avançar"
+                to="/payment"
+              />
             </div>
-
-            <Button
-              title="Avançar"
-              to="/payment"
-            />
           </>
         }
         {

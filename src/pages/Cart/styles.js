@@ -20,6 +20,7 @@ export const Container = styled.div`
 
     .cart-dishes-wrapper {
       width: 100%;
+      max-width: 112rem;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -40,9 +41,47 @@ export const Container = styled.div`
       }
     }
   }
+
+  @media screen and (min-width: 800px) {
+    > main {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      h1 {
+        margin-bottom: 10rem;
+      }
+
+      .cart-dishes-wrapper {
+        display: grid;
+        justify-items: center;
+        gap: 4rem;
+        grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+      }
+
+      .value-payment {
+        width: 100%;
+        max-width: 90rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10rem;
+
+        .value {
+          margin-top: 5rem;
+  
+          h5, span {
+            font-size: 2.5rem;
+            align-self: flex-start;
+          }
+        }
+      }
+    }
+  }
 `
 
 export const Dish = styled.div`
+  min-width: 35rem;
   display: flex;
   align-items: center;
   gap: 1rem;
