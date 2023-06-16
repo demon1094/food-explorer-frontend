@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { api } from "../../services/api"
 
+import { Zoom } from "react-awesome-reveal"
+
 export function Favorites() {
   const [ favoriteDishes, setFavoriteDishes ] = useState([])
 
@@ -65,23 +67,25 @@ export function Favorites() {
           favoriteDishes.length > 0 &&
           <>
             <section className="favorite-dishes-wrapper">
-              {
-                favoriteDishes.map((favoriteDish) => (
-                  <Dish key={favoriteDish.id}>
-                    <img
-                      src={`${api.defaults.baseURL}/files/${favoriteDish.image}`}
-                      alt="Imagem do prato"
-                      onClick={() => handleDetails(favoriteDish.id)}
-                    />
-                    <div>
-                      <h3>{favoriteDish.name}</h3>
-                      <button onClick={() => handleRemoveFavoriteDish(favoriteDish.id)}>
-                        Remover dos favoritos
-                      </button>
-                    </div>
-                  </Dish>
-                ))
-              }
+              <Zoom cascade damping={0.05} triggerOnce>
+                {
+                  favoriteDishes.map((favoriteDish) => (
+                    <Dish key={favoriteDish.id}>
+                      <img
+                        src={`${api.defaults.baseURL}/files/${favoriteDish.image}`}
+                        alt="Imagem do prato"
+                        onClick={() => handleDetails(favoriteDish.id)}
+                      />
+                      <div>
+                        <h3>{favoriteDish.name}</h3>
+                        <button onClick={() => handleRemoveFavoriteDish(favoriteDish.id)}>
+                          Remover dos favoritos
+                        </button>
+                      </div>
+                    </Dish>
+                  ))
+                }
+              </Zoom>
             </section>
           </>
         }
