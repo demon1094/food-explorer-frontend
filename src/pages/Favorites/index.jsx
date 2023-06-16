@@ -30,7 +30,7 @@ export function Favorites() {
       if (error.response) {
         toast.error(error.response.data.message, toastConfig)
       } else {
-        toast.error('Erro ao remover prato dos favoritos', toastConfig)
+        toast.error('Erro inesperado ao remover prato dos favoritos', toastConfig)
       }
     })
   }
@@ -41,13 +41,21 @@ export function Favorites() {
 
   useEffect(() => {
     async function fetchFavoriteDishes() {
-      const response = await api.get('/favorites')
-
-      setFavoriteDishes(response.data)
+      await api.get('/favorites')
+      .then((response) => {
+        setFavoriteDishes(response.data)
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data.message)
+        } else {
+          console.log('Erro inesperado ao consultar os pratos favoritos pela API')
+        }
+      })
     }
 
     fetchFavoriteDishes()
-  }, [favoriteDishes])
+  }, [])
 
   return (
     <Container>
