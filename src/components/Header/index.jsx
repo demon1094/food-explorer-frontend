@@ -14,7 +14,7 @@ import { useAuth } from "../../hooks/auth"
 
 import { api } from "../../services/api"
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export function Header({ onChange }) {
   const [ open, setOpen ] = useState(false)
@@ -22,6 +22,8 @@ export function Header({ onChange }) {
 
   const { dishesOnCartCounter, clearCart } = useCart()
   const { user, signOut } = useAuth()
+  
+  const navigate = useNavigate()
 
   function openMobileMenu() {
     if (!open) {
@@ -33,6 +35,7 @@ export function Header({ onChange }) {
 
   async function handleSignOut() {
     clearCart()
+    navigate('/')
     signOut()
   }
 
