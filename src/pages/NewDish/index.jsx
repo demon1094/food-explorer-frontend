@@ -183,8 +183,8 @@ export function NewDish() {
               id="description"
               cols="20"
               rows="6"
-              maxLength="200"
-              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição (max: 200 caractéres)"
+              maxLength="400"
+              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição (max: 400 caractéres)"
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
