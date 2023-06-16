@@ -198,7 +198,7 @@ export const Dishes = styled.div`
   }
 
   @media screen and (min-width: 1296px) {
-    gap: 6rem;
+    gap: 10rem;
     
     > .dish-category {
       h3 {

@@ -21,6 +21,8 @@ import { useAuth } from "../../hooks/auth"
 
 import { api } from "../../services/api"
 
+import { Rotate, Slide } from "react-awesome-reveal"
+
 export function Details() {
   const [ amount, setAmount ] = useState(1)
   const [ dish, setDish ] = useState({})
@@ -86,55 +88,59 @@ export function Details() {
         />
         
         <div className="dish">
-          <img src={`${api.defaults.baseURL}/files/${dish.image}`} alt="Imagem do Prato" />
+          <Rotate>
+            <img src={`${api.defaults.baseURL}/files/${dish.image}`} alt="Imagem do Prato" />
+          </Rotate>
 
-          <div className="details">
-            <h2>{dish.name}</h2>
+          <Slide direction="right">
+            <div className="details">
+              <h2>{dish.name}</h2>
 
-            <p>{dish.description}</p>
+              <p>{dish.description}</p>
 
-            <div className="ingredients">
+              <div className="ingredients">
+                {
+                  ingredients.map((ingredient) => (
+                    <Ingredient
+                      key={ingredient.id}
+                      name={ingredient.name}
+                    />
+                  ))
+                }
+              </div>
+              
               {
-                ingredients.map((ingredient) => (
-                  <Ingredient
-                    key={ingredient.id}
-                    name={ingredient.name}
-                  />
-                ))
+                !user.isAdmin &&
+                <>
+                  <div className="qtd-payment">
+                    <div>
+                      <button onClick={decraseAmount}>-</button>
+                      <span>{String(amount).padStart(2, '0')}</span>
+                      <button onClick={() => setAmount(amount + 1)}>+</button>
+                    </div>
+
+                    <Button
+                      icon={TfiReceipt}
+                      title={`pedir ∙ ${ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(dish.price) }`}
+                      onClick={handleAddDish}
+                    />
+                  </div>
+                </>
+              }
+              
+              {
+                user.isAdmin ?
+                <Button
+                  title="Editar prato"
+                  to={`/edit/${params.id}`}
+                />
+
+                :
+
+                <></>
               }
             </div>
-            
-            {
-              !user.isAdmin &&
-              <>
-                <div className="qtd-payment">
-                  <div>
-                    <button onClick={decraseAmount}>-</button>
-                    <span>{String(amount).padStart(2, '0')}</span>
-                    <button onClick={() => setAmount(amount + 1)}>+</button>
-                  </div>
-
-                  <Button
-                    icon={TfiReceipt}
-                    title={`pedir ∙ ${ new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(dish.price) }`}
-                    onClick={handleAddDish}
-                  />
-                </div>
-              </>
-            }
-            
-            {
-              user.isAdmin ?
-              <Button
-                title="Editar prato"
-                to={`/edit/${params.id}`}
-              />
-
-              :
-
-              <></>
-            }
-          </div>
+          </Slide>
         </div>
       </main>
 
