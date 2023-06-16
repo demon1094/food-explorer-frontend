@@ -204,6 +204,21 @@ export const Dishes = styled.div`
       h3 {
         font-size: 2.5rem;
       }
+
+      .dishes-wrapper {
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar-track {
+          border-radius: 1rem;
+          background: ${({ theme }) => theme.COLORS.GRADIENT_200 };
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: ${({ theme }) => theme.COLORS.TOMATO_300 };
+          border-radius: 1rem;
+          border: 5px solid ${({ theme }) => theme.COLORS.TOMATO_300 };
+        }
+      }
     }
   }
 `

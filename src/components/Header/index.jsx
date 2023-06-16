@@ -125,11 +125,22 @@ export function Header({ onChange }) {
       }
 
       <DesktopCart>
-        <Button
-          icon={TfiReceipt}
-          title={`Carrinho (${dishesOnCartCounter})`}
-          to="/cart"
-        />
+        {
+          !user.isAdmin ?
+          <Button
+            icon={TfiReceipt}
+            title={`Carrinho (${dishesOnCartCounter})`}
+            to="/cart"
+          />
+
+          :
+
+          <Button
+            icon={TfiReceipt}
+            title="Pedidos"
+            to="/orders"
+          />
+        }
       </DesktopCart>
 
       <FiLogOut

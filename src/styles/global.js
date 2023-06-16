@@ -15,9 +15,5 @@ export default createGlobalStyle`
     min-height: 100vh;
     font-size: 1.6rem;
     overflow-x: hidden;
-
-    &::-webkit-scrollbar {
-      width: 0;
-    }
   }
 `
