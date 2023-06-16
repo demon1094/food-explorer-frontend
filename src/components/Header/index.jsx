@@ -8,14 +8,17 @@ import { TfiReceipt } from "react-icons/tfi"
 import { Button } from "../Button"
 import { Input } from "../Input"
 
+import { useState, useEffect } from "react"
 import { useCart } from "../../hooks/cart"
 import { useAuth } from "../../hooks/auth"
-import { useState } from "react"
+
+import { api } from "../../services/api"
 
 import { Link } from "react-router-dom"
 
 export function Header({ onChange }) {
   const [ open, setOpen ] = useState(false)
+  const [ orders, setOrders ] = useState([])
 
   const { dishesOnCartCounter, clearCart } = useCart()
   const { user, signOut } = useAuth()
@@ -32,6 +35,24 @@ export function Header({ onChange }) {
     clearCart()
     signOut()
   }
+
+  useEffect(() => {
+    async function fetchOrders() {
+      await api.get('/orders')
+      .then((response) => {
+        setOrders(response.data)
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data.message)
+        } else {
+          console.log('Erro ao consultar os pedidos pela API')
+        }
+      })
+    }
+
+    fetchOrders()
+  }, [])
 
   return (
     <Container>
@@ -95,7 +116,7 @@ export function Header({ onChange }) {
           <ul>
             {
               user.isAdmin ?
-              <li><a href="/new">Novo prato</a></li>
+              <li><Link to="/new">Novo prato</Link></li>
               :
               <></>
             }
@@ -137,7 +158,7 @@ export function Header({ onChange }) {
 
           <Button
             icon={TfiReceipt}
-            title="Pedidos"
+            title={`Pedidos (${orders.length})`}
             to="/orders"
           />
         }

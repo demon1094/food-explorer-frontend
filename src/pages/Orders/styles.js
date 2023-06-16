@@ -28,7 +28,7 @@ export const Container = styled.div`
 export const OrdersWrapperMobile = styled.section`
   width: 100%;
 
-  > div:nth-child(2) {
+  > div:nth-child(1) {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -102,5 +102,9 @@ export const OrdersWrapperDesktop = styled.div`
         color: ${ ({ theme }) => theme.COLORS.WHITE_TEXT_300 };
       }
     }
+  }
+
+  @media screen and (max-width: 1023px) {
+    display: none;
   }
 `

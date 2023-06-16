@@ -64,7 +64,7 @@ export function SignIn() {
           onClick={handleSignIn}
         />
         
-        <ButtonText href="/signup" title="Criar uma conta" />
+        <ButtonText to="/signup" title="Criar uma conta" />
       </form>
 
     </Container>

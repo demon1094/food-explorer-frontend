@@ -15,6 +15,8 @@ import { toast } from "react-toastify"
 
 import { api } from "../../services/api"
 
+import { Link } from "react-router-dom"
+
 export function Dish({ id, img, name, price, description }) {
   const [ favorited, setFavorited ] = useState(false)
   const [ amount, setAmount ] = useState(1)
@@ -81,9 +83,9 @@ export function Dish({ id, img, name, price, description }) {
         <FiHeart />
       </button>
 
-      <a className="dish-img" href={`/details/${id}`}>
+      <Link className="dish-img" to={`/details/${id}`}>
         <img src={image} alt="Imagem do prato" />
-      </a>
+      </Link>
 
       <h4>{name}</h4>
 

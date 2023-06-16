@@ -14,6 +14,8 @@ import { api } from "../../services/api"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
+import { Zoom } from "react-awesome-reveal";
+
 export function Home() {
   const [ dishes, setDishes ] = useState([])
   const [ search, setSearch ] = useState('')
@@ -55,6 +57,7 @@ export function Home() {
           </div>
         </Introduction>
 
+
         <Dishes>
           <section className="dish-category meals">
             <h3>Refeições</h3>
@@ -63,34 +66,36 @@ export function Home() {
               {
                 dishes.filter(dish => dish.category == 'meal').map((dish, index) => (
                   <Dish
-                    key={index}
-                    id={dish.id}
-                    img={dish.image}
-                    name={dish.name}
-                    price={dish.price}
-                    description={dish.description}
+                  key={index}
+                  id={dish.id}
+                  img={dish.image}
+                  name={dish.name}
+                  price={dish.price}
+                  description={dish.description}
                   />
-                ))
-              }
+                  ))
+                }
             </div>
           </section>
 
           <section className="dish-category dessert-dishes">
             <h3>Sobremesas</h3>
-
+            
             <div className="dishes-wrapper">
-              {
-                dishes.filter(dish => dish.category == 'dessert').map((dish, index) => (
-                  <Dish
-                    key={index}
-                    id={dish.id}
-                    img={dish.image}
-                    name={dish.name}
-                    price={dish.price}
-                    description={dish.description}
-                  />
-                ))
-              }
+              <Zoom cascade damping={0.1} triggerOnce>
+                {
+                  dishes.filter(dish => dish.category == 'dessert').map((dish, index) => (
+                    <Dish
+                      key={index}
+                      id={dish.id}
+                      img={dish.image}
+                      name={dish.name}
+                      price={dish.price}
+                      description={dish.description}
+                    />
+                  ))
+                }
+              </Zoom>
             </div>
           </section>
 
@@ -98,18 +103,20 @@ export function Home() {
             <h3>Bebidas</h3>
 
             <div className="dishes-wrapper">
-              {
-                dishes.filter(dish => dish.category == 'drink').map((dish, index) => (
-                  <Dish
-                    key={index}
-                    id={dish.id}
-                    img={dish.image}
-                    name={dish.name}
-                    price={dish.price}
-                    description={dish.description}
-                  />
-                ))
-              }
+              <Zoom cascade damping={0.1} triggerOnce>
+                {
+                  dishes.filter(dish => dish.category == 'drink').map((dish, index) => (
+                    <Dish
+                      key={index}
+                      id={dish.id}
+                      img={dish.image}
+                      name={dish.name}
+                      price={dish.price}
+                      description={dish.description}
+                    />
+                  ))
+                }
+              </Zoom>
             </div>
           </section>
         </Dishes>
