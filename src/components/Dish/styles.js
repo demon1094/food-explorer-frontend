@@ -48,7 +48,7 @@ export const Container = styled.div`
   
   > p {
     display: none;
-    max-height: 3.8rem;
+    max-height: 4rem;
     font-size: 1.4rem;
     text-align: center;
     overflow: hidden;
