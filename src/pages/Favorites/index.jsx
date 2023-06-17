@@ -55,7 +55,7 @@ export function Favorites() {
     }
 
     fetchFavoriteDishes()
-  }, [])
+  }, [favoriteDishes])
 
   return (
     <Container>
