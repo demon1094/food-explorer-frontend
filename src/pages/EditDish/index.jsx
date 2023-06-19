@@ -68,6 +68,28 @@ export function EditDish() {
     await api.patch(`/dishes/image?dish_id=${params.id}`, fileUploadForm)
   }
 
+  async function handleRemoveDish() {
+    const confirm = window.confirm('Excluir prato?')
+
+    if (confirm) {
+      await api.delete(`/dishes?dish_id=${params.id}`)
+      .then(() => {
+        toast.info('Prato deletado com sucesso. Redirecionando...', toastConfig)
+
+        setTimeout(() => {
+          navigate('/')
+        }, 1500)
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message, toastConfig)
+        } else {
+          toast.error('Erro inesperado ao tentar excluir este prato.', toastConfig)
+        }
+      })
+    }
+  }
+
   function handleAddIngredient() {
     setIngredients(prevState => [...prevState, newIngredient])
     setNewIngredient('')
@@ -212,11 +234,17 @@ export function EditDish() {
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
-
-          <Button
-            onClick={handleUpdateDish}
-            title="Salvar alterações"
-          />
+          
+          <div className="buttons">
+            <Button
+              onClick={handleRemoveDish}
+              title="Excluir prato"
+            />
+            <Button
+              onClick={handleUpdateDish}
+              title="Salvar alterações"
+            />
+          </div>
         </form>
       </main>
 

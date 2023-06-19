@@ -7,7 +7,7 @@ import theme from './styles/theme'
 
 import { Routes } from './routes'
 
-import { CartProvider } from './hooks/Cart'
+import { CartProvider } from './hooks/cart'
 import { AuthProvider } from './hooks/auth'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

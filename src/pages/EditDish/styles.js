@@ -113,6 +113,16 @@ export const Container = styled.div`
           background: ${ ({ theme }) => theme.COLORS.INPUT_BG };
         }
       }
+
+      .buttons {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        a:first-child {
+          background: ${ ({ theme }) => theme.COLORS.INPUT_BG };
+        }
+      }
     }
 
     @media screen and (min-width: 1024px) {
