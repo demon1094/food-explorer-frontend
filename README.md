@@ -11,6 +11,11 @@ O projeto também possui o contexto de um usuário administrador que pode: criar
 ReactJS, Styled-Components, Context API, Hooks, Toastify, React Awesome Reveal, React Router DOM
 ```
 #
+📦 Deploy
+```
+https://food-explorer-demon1094.vercel.app/
+```
+#
 🔧 Instalação e Execução
 ```
 1. Clone o projeto executando o comando: git clone https://github.com/demon1094/food-explorer-frontend.git
