@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css"
 
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
-import { useCart } from "../../hooks/cart"
+import { useCart } from "../../hooks/Cart"
 import { useAuth } from "../../hooks/auth"
 
 import { api } from "../../services/api"

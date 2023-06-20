@@ -11,7 +11,7 @@ import { toastConfig } from "../../configs/toastConfig"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
-import { useCart } from "../../hooks/cart"
+import { useCart } from "../../hooks/Cart"
 import { api } from "../../services/api"
 
 export function Cart() {

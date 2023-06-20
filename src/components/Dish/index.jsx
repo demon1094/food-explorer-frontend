@@ -6,7 +6,7 @@ import { Button } from "../Button"
 import { FiHeart } from "react-icons/fi"
 
 import { useState, useEffect } from "react"
-import { useCart } from "../../hooks/cart"
+import { useCart } from "../../hooks/Cart"
 import { useAuth } from "../../hooks/auth"
 
 import { toastConfig } from "../../configs/toastConfig"
