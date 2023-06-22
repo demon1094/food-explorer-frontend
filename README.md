@@ -8,7 +8,7 @@ O projeto também possui o contexto de um usuário administrador que pode: criar
 
 📋 Tecnologias e conceitos abordados no projeto (front-end)
 ```
-ReactJS, Styled-Components, Context API, Hooks, Toastify, React Awesome Reveal, React Router DOM
+ReactJS, Styled-Components, Context API, Hooks, LocalStorage, Toastify, React Awesome Reveal, React Router DOM
 ```
 #
 📦 Deploy
